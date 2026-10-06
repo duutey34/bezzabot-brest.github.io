@@ -70,7 +70,7 @@ export default function App() {
         {/* Тёплая подпись в конце страницы */}
         <footer className="text-center pt-4 pb-8 text-xs text-[#8a8176] space-y-1">
           <p className="font-semibold text-[#544b41]">
-            «Без забот» • Брест, ул. Петра Ивашутина, 6 (эт. 9, кв. 80)
+            «Без забот» • Брест, ул. Петра Ивашутина, 6
           </p>
           <p className="pt-0.5 text-[#9c9186]">
             Желаем вам самого уютного и приятного отдыха в Бресте! ❤️

@@ -12,7 +12,7 @@ export interface GuidePlace {
 export const APARTMENT_INFO = {
   name: 'БЕЗ ЗАБОТ',
   tagline: 'книга гостя',
-  address: 'Брест, ул. Петра Ивашутина, 6 • эт. 9, кв. 80',
+  address: 'Брест, ул. Петра Ивашутина, 6',
   mapsUrl: 'https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6',
   googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Брест,+ул.+Петра+Ивашутина,+6',
   description: 'Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и панорамным видом на закат. Все подсказки по квартире и городу собраны ниже 👇',

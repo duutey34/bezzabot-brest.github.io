@@ -10,7 +10,7 @@ export const TrashGuide: React.FC = () => {
       id="trash"
       title="Вынос мусора (где контейнеры)"
       icon="🗑️"
-      defaultOpen={true}
+      defaultOpen={false}
       borderHighlight={true}
     >
       <div>

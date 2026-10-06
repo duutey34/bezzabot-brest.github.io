@@ -170,7 +170,7 @@ export const CityGuide: React.FC = () => {
           <Accordion
             title="Пешком рядом с домом (2–7 мин)"
             icon="🚶"
-            defaultOpen={true}
+            defaultOpen={false}
           >
             <div className="space-y-2.5">
               {NEARBY_PLACES.map(p => renderPlaceCard({ ...p, locationGroup: 'Рядом с домом' }))}
@@ -181,7 +181,7 @@ export const CityGuide: React.FC = () => {
           <Accordion
             title="Главные места города (10–14 мин на авто)"
             icon="🏰"
-            defaultOpen={true}
+            defaultOpen={false}
           >
             <div className="space-y-2.5">
               {CITY_PLACES.map(p => renderPlaceCard({ ...p, locationGroup: 'В городе' }))}

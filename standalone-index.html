@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Без забот • Брест | Книга гостя</title>
+  <meta name="description" content="Интерактивная книга гостя и путеводитель по апартаментам «Без забот» в Бресте: пароль Wi-Fi, бытовая техника, правила, вынос мусора и гид по городу.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --card-bg: #ffffff;
+      --text-main: #1f1b18;
+      --text-muted: #6b645c;
+      --accent: #c86c12;
+      --accent-soft: #fbf3ea;
+      --wood-dark: #2c221b;
+      --border: #e9e5de;
+      --success: #059669;
+      --danger: #dc2626;
+      --tabbar-bg: rgba(24, 21, 19, 0.96);
+      --nav-height: 64px;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #141b2b;
+      color: var(--text-main);
+    }
+
+    body {
+      background-color: var(--bg);
+      padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom, 20px) + 20px);
+      line-height: 1.5;
+    }
+
+    /* 1. ГЛАВНЫЙ ЭКРАН (HERO) НА ВСЮ ВЫСОТУ 100DVH ДО МЕНЮ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: 
+        linear-gradient(180deg, 
+          transparent 0%, 
+          transparent 48%, 
+          rgba(14, 11, 9, 0.6) 75%, 
+          rgba(14, 11, 9, 0.95) 100%
+        ),
+        url('sunset.jpg') center center / cover no-repeat,
+        url('изображение_viber_2026-10-06_08-54-31-290.jpg') center center / cover no-repeat;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 20px calc(var(--nav-height) + env(safe-area-inset-bottom, 12px) + 20px);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .hero-host-names {
+      font-size: 13px;
+      color: #fde68a;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 8.5vw, 44px);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .hero-address {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #f3f0eb;
+      margin-bottom: 12px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: #ded9d2;
+      line-height: 1.45;
+    }
+
+    /* КОНТЕЙНЕР */
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .section-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--wood-dark);
+      margin: 32px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    /* ПРИВЕТСТВИЕ */
+    .welcome-card {
+      background: linear-gradient(135deg, #ffffff 0%, #faf7f2 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .welcome-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .welcome-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 10px 6px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--wood-dark);
+      cursor: pointer;
+    }
+
+    .welcome-btn-primary {
+      background: var(--wood-dark);
+      color: #ffffff;
+      border-color: var(--wood-dark);
+    }
+
+    /* ЗАСЕЛЕНИЕ И WI-FI */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .info-tile {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .info-tile-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .info-tile-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--wood-dark);
+    }
+
+    .wifi-card {
+      background: #fffdfa;
+      border: 2px solid #ecd8c5;
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .wifi-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .wifi-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .wifi-copy-btn {
+      background: var(--wood-dark);
+      color: #fff;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .wifi-copy-btn:active {
+      transform: scale(0.98);
+      background: var(--accent);
+    }
+
+    .wifi-qr-btn {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid #ecd8c5;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .qr-container {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #ecd8c5;
+      text-align: center;
+    }
+
+    /* АККОРДЕОНЫ */
+    details {
+      background: var(--card-bg);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    details[open] {
+      border-color: #d1c8bd;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    summary {
+      padding: 16px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      user-select: none;
+      color: var(--wood-dark);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chevron {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.25s ease;
+    }
+
+    details[open] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .acc-content {
+      padding: 0 16px 16px;
+      font-size: 14px;
+      color: #443e38;
+      line-height: 1.55;
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+    }
+
+    /* МУСОР */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 10px 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .yandex-point-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--accent-soft);
+      border: 1px solid #ecd8c5;
+      padding: 11px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 13px;
+      margin: 12px 0 8px;
+    }
+
+    .alert-box {
+      background: #fef2f2;
+      border-left: 4px solid var(--danger);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #991b1b;
+      margin-top: 10px;
+    }
+
+    /* МЕСТА */
+    .place-item {
+      background: #faf8f5;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+
+    .place-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+    .badge-time { background: #f0ede8; color: #585047; }
+    .badge-accent { background: var(--accent-soft); color: var(--accent); }
+
+    /* КОНТАКТЫ */
+    .host-phones {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .phone-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f7f5f1;
+      padding: 12px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--wood-dark);
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .messengers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-msg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+    }
+    .btn-tg { background: #229ED9; }
+    .btn-wa { background: #25D366; }
+    .btn-vb { background: #7360f2; grid-column: span 2; }
+
+    /* 4. ФИКСИРОВАННЫЙ ТАББАР НА ВСЮ ШИРИНУ */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: calc(var(--nav-height) + env(safe-area-inset-bottom, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      background: var(--tabbar-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 999;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      text-decoration: none;
+      color: #948b81;
+      font-size: 11px;
+      font-weight: 500;
+      width: 25%;
+      height: 100%;
+      transition: color 0.15s;
+    }
+
+    .nav-btn.active, .nav-btn:hover {
+      color: #f59e0b;
+    }
+
+    .nav-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ГЛАВНЫЙ ЭКРАН 100DVH ДО МЕНЮ -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <div class="hero-badge-row">
+        <div class="hero-badge">книга гостя</div>
+        <div class="hero-host-names">❤️ Вадим & Наталья</div>
+      </div>
+      <h1 class="hero-title">БЕЗ ЗАБОТ</h1>
+      <a href="https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6" class="hero-address" target="_blank">
+        📍 Брест, ул. Петра Ивашутина, 6
+      </a>
+      <p class="hero-desc">Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и видом на закат. Все подсказки по квартире и городу собраны ниже 👇</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ПРИВЕТСТВИЕ -->
+    <div class="welcome-card">
+      <div style="font-size: 16px; font-weight: 700; color: var(--wood-dark);">Рады приветствовать вас в Бресте! ☀️</div>
+      <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+        Мы всегда на связи, чтобы ваш отдых прошёл без лишних забот:
+      </div>
+      <div class="welcome-actions">
+        <button class="welcome-btn welcome-btn-primary" onclick="copyWifi()">
+          📶 Wi-Fi пароль
+        </button>
+        <a href="https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6" target="_blank" class="welcome-btn">
+          📍 Маршрут
+        </a>
+        <a href="#contacts" class="welcome-btn">
+          📞 Связь
+        </a>
+      </div>
+    </div>
+
+    <!-- ЗАСЕЛЕНИЕ И WI-FI -->
+    <div class="info-grid">
+      <div class="info-tile">
+        <div class="info-tile-label">Заезд</div>
+        <div class="info-tile-val">с 14:00</div>
+      </div>
+      <div class="info-tile">
+        <div class="info-tile-label">Выезд</div>
+        <div class="info-tile-val">до 12:00</div>
+      </div>
+    </div>
+
+    <!-- КАРТОЧКА WI-FI -->
+    <div class="wifi-card" id="wifi">
+      <div class="wifi-row">
+        <div>
+          <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Сеть Wi-Fi (5 GHz)</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--wood-dark);" id="wifi-ssid">Home_WiFi_5g</div>
+        </div>
+        <div style="font-size: 24px;">📶</div>
+      </div>
+      <div style="margin-bottom: 14px; background: #fff; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);">
+        <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Пароль</div>
+        <div style="font-size: 20px; font-weight: 700; font-family: monospace; color: var(--wood-dark);" id="wifi-pass">qwer1234</div>
+      </div>
+      <div class="wifi-actions">
+        <button class="wifi-copy-btn" onclick="copyWifi()">
+          📋 Скопировать пароль
+        </button>
+        <button class="wifi-qr-btn" onclick="toggleQr()">
+          📷 QR-код
+        </button>
+      </div>
+      <div class="qr-container" id="qr-box">
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">Наведите камеру смартфона для подключения:</div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=WIFI%3AT%3AWPA%3BS%3AHome_WiFi_5g%3BP%3Aqwer1234%3B%3B&bgcolor=ffffff&color=2c221b&margin=1" alt="QR Code" style="width: 170px; height: 170px; border-radius: 12px; border: 1px solid #ecd8c5;">
+      </div>
+    </div>
+
+    <!-- ВЫНОС МУСОРА (СХЕМА + ЯНДЕКС ТОЧКА) -->
+    <details style="border: 2px solid #ecd8c5;" id="trash">
+      <summary>
+        <span>🗑️ Вынос мусора (где контейнеры)</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        <p style="margin-bottom: 8px; font-weight: 500;">Как быстро дойти до площадки:</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div>Выйдите из подъезда и поверните <b>налево</b> в сторону соседнего дома № 8.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div>Пройдите по пешеходной дорожке между домами.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div>Контейнеры расположены у дороги на небольшом удалении от дома.</div>
+          </div>
+        </div>
+
+        <!-- ЯНДЕКС ТОЧКА -->
+        <a href="https://maps.yandex.ru/?rtext=~52.063463,23.719237&rtt=pd" target="_blank" class="yandex-point-btn">
+          <span>📍 Точка на Яндекс.Картах (мусорка)</span>
+          <span style="text-decoration: underline;">Пеший маршрут →</span>
+        </a>
+
+        <div class="alert-box">
+          <b>Важно:</b> Пожалуйста, не оставляйте пакеты с мусором на этаже или у крыльца подъезда. Спасибо за чистоту!
+        </div>
+      </div>
+    </details>
+
+    <!-- ПРАВИЛА И ТИШИНА -->
+    <details>
+      <summary>
+        <span>📜 Правила проживания и тишина</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 8px;">
+          <li><b>Курение строго запрещено 🚭:</b> в квартире, на балконе и в подъезде курить нельзя. Места для курения — только на улице.</li>
+          <li><b>Без шумных вечеринок 🚫:</b> квартира создана для спокойного семейного отдыха и не сдаётся для праздников.</li>
+          <li><b>Режим тишины (Закон РБ) 🤫:</b> просим соблюдать тишину с <b>23:00 до 07:00</b>.</li>
+          <li><b>При выходе из дома:</b> закрывайте окна, запирайте дверь на ключ, выключайте свет и мощные электроприборы.</li>
+          <li><b>Безбарьерный вход ♿:</b> подъезд оборудован плавным заездом без ступеней от тротуара прямо до лифта.</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- ТЕХНИКА И SMART TV -->
+    <h2 class="section-title" id="tech">🍳 Бытовая техника & TV</h2>
+
+    <details>
+      <summary>
+        <span>📺 Smart TV и приложения</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        Телевизор оснащен атмосферной подсветкой. Для вас настроены:
+        <ul style="padding-left: 18px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
+          <li><b>OTT Player:</b> эфирные телеканалы, фильмы и спортивные трансляции.</li>
+          <li><b>NUM / Кинопоиск:</b> огромная библиотека фильмов и новинок в HD.</li>
+          <li><b>YouTube:</b> видео и музыка (при любом подвисании просто перезапустите приложение).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span>🍳 Варочная панель, духовка и СВЧ</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        1. Удерживайте кнопку включения 2 секунды.<br>
+        2. <b>Если горит символ «L» (защита от детей):</b> зажмите кнопку с иконкой замка 🔒 на 3 секунды до звукового сигнала — плита разблокируется.<br>
+        3. На кухне есть СВЧ-печь, духовой шкаф, чайник, посуда, а также чай, кофе, сахар, соль и масло.
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span>🧺 Ванная комната и стиральная машина</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        • <b>Стиральная машина:</b> рекомендуем удобный режим «Быстро 30 мин».<br>
+        • В ванной есть тропический душ, полотенцесушитель, фен и свежие полотенца.<br>
+        • Санузел в квартире раздельный. Утюг и гладильная доска — в спальне/прихожей.
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span>🌿 Балкон и кондиционер</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        • <b>Балкон (9 этаж):</b> панорамный вид на закатный Брест, столик из натурального слэба и складная сушилка для белья.<br>
+        • <b>Кондиционер:</b> значок ❄️ — охлаждение, значок ☀️ — обогрев. Комфортная температура: 22–23°C.
+      </div>
+    </details>
+
+    <!-- ГОРОД И ЛОКАЦИИ -->
+    <h2 class="section-title" id="city">🗺️ Гид по Бресту и району</h2>
+
+    <details>
+      <summary>
+        <span>🚶 Пешком рядом с домом (2–7 мин)</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        <div class="place-item">
+          <div class="place-header">
+            <b>☕ Кафе «Brasileiro» (Бразильяно)</b>
+            <span class="badge badge-accent">2 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Прямо в нашем квартале (ул. Ивашутина). Свежий кофе, круассаны и сытные завтраки.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🛒 Магазин «Продукточка»</b>
+            <span class="badge badge-time">1–2 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Через дорогу: фермерская молочка, свежий хлеб, вода, бакалея и снеки.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🍕 Пиццерия «Папа Пицца» & супермаркет «Санта»</b>
+            <span class="badge badge-time">5–7 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Ул. Рябиновая, 1А. Пицца из печи с собой или в уютном зале, кулинария и выпечка.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🌳 Парк 1000-летия Бреста</b>
+            <span class="badge badge-time">5–7 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Через дорогу (ул. Екельчика): сеть дорожек для прогулок, храм и теннисные корты.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🛡️ Форт № 4 Брестской крепости</b>
+            <span class="badge badge-time">15 мин / 4 мин авто</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Земляные валы и капониры внешнего пояса крепости. Исторический тихий парк.</span>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span>🏰 Главные места города (10–14 мин на авто)</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        <div class="place-item">
+          <div class="place-header">
+            <b>🕯️ Пешеходная ул. Советская (фонарщик)</b>
+            <span class="badge badge-time">12–14 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Главный променад. Каждый вечер в сумерках фонарщик вручную зажигает керосиновые фонари. Парковка: ул. Гоголя / Орджоникидзе.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>⭐ Брестская крепость-герой & музей «Берестье»</b>
+            <span class="badge badge-time">12–14 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Монумент «Мужество», Холмские ворота и музей XIII века. Удобная бесплатная парковка — у Северных ворот (ул. Зубачева).</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🎨 Аллея кованых фонарей (ул. Гоголя)</b>
+            <span class="badge badge-time">12–14 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Десятки арт-скульптур по мотивам повестей Гоголя («Нос», «Вечера на хуторе»).</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🚢 Набережная Мухавца и теплоход «Гродно»</b>
+            <span class="badge badge-time">10–12 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Ивовые аллеи вдоль реки. В сезон от Городского сада (ул. Ленина, 2) ходит экскурсионный теплоход.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>🎡 Парк 1 Мая & Трактир «У озера»</b>
+            <span class="badge badge-time">12–14 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Аттракционы, лебединые пруды и сруб с горячими белорусскими драниками в глиняных горшочках.</span>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span>🌲 Загородные маршруты на автомобиле</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        <div class="place-item">
+          <div class="place-header">
+            <b>1. Беловежская пуща & Каменецкая вежа</b>
+            <span class="badge badge-accent">65 км • ~55 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Реликтовый лес, вольеры с зубрами, Музей природы и Поместье Деда Мороза. По пути — оборонная башня XIII века в Каменце.</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>2. Коссовский замок & Ружанский дворец</b>
+            <span class="badge badge-accent">135 км • 1 ч 30 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Неоготический дворец Пусловских с 12 башнями и монументальный Ружанский дворец Сапег («Белорусский Версаль»).</span>
+        </div>
+        <div class="place-item">
+          <div class="place-header">
+            <b>3. Парк животных в Барановичах («Диприз»)</b>
+            <span class="badge badge-accent">205 км • 2 ч (М1)</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Огромный сафари-парк: ламы, альпаки и олени свободно подходят к рукам. Запас времени — от 4–5 часов.</span>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span>⏱️ Время в пути, такси и парковка</span>
+        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="acc-content">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0;">Погранпереход «Брест» (Варшавский мост)</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~11 мин</td></tr>
+          <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0;">Центр (ул. Советская, ЦУМ)</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~12–14 мин</td></tr>
+          <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0;">Мемориал «Брестская крепость»</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~13 мин</td></tr>
+          <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0;">Центральный Ж/Д вокзал Бреста</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~15 мин</td></tr>
+          <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0;">Аэропорт «Брест»</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~27 мин</td></tr>
+          <tr><td style="padding: 8px 0;">Беловежская пуща (аг. Каменюки)</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~55–60 мин</td></tr>
+        </table>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 10px; line-height: 1.6;">
+          🚖 Такси от вокзала: 12–15 мин (~10–15 BYN, Яндекс Go / 7220).<br>
+          🚌 Автобус от вокзала: № 9 до ост. «Кольцевая» или «4 Форт» (далее 3 мин пешком).<br>
+          🅿️ Парковка: большая бесплатная парковка прямо во дворе дома (места есть всегда).
+        </div>
+      </div>
+    </details>
+
+    <!-- КОНТАКТЫ -->
+    <h2 class="section-title" id="contacts">💬 Мы всегда на связи</h2>
+    <div class="card">
+      <div style="font-size: 17px; font-weight: 700; color: var(--wood-dark); margin-bottom: 4px;">Вадим и Наталья</div>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        С радостью поможем по любым бытовым вопросам, подскажем дорогу и сделаем ваш отдых комфортным:
+      </p>
+
+      <div class="host-phones">
+        <a href="tel:+375297977070" class="phone-btn">
+          <span>📞 Вадим (+375 29 797-70-70)</span>
+          <span style="font-size: 12px; color: var(--accent);">Позвонить</span>
+        </a>
+        <a href="tel:+375297221551" class="phone-btn">
+          <span>📞 Наталья (+375 29 722-15-51)</span>
+          <span style="font-size: 12px; color: var(--accent);">Позвонить</span>
+        </a>
+      </div>
+
+      <div class="messengers-grid">
+        <a href="https://t.me/+375297977070" class="btn-msg btn-tg" target="_blank">Telegram</a>
+        <a href="https://wa.me/375297977070" class="btn-msg btn-wa" target="_blank">WhatsApp</a>
+        <a href="viber://chat?number=%2B375297977070" class="btn-msg btn-vb">Viber</a>
+      </div>
+    </div>
+
+    <footer style="text-align: center; padding: 20px 0; font-size: 12px; color: #8a8176;">
+      <p style="font-weight: 600; color: #544b41;">«Без забот» • Брест, ул. Петра Ивашутина, 6</p>
+      <p style="margin-top: 4px; color: #9c9186;">Желаем вам самого уютного и приятного отдыха в Бресте! ❤️</p>
+    </footer>
+
+  </div>
+
+  <!-- ФИКСИРОВАННЫЙ ТАББАР НА ВСЮ ШИРИНУ -->
+  <nav class="bottom-nav">
+    <a href="#top" class="nav-btn active">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      Главная
+    </a>
+    <a href="#tech" class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      Техника
+    </a>
+    <a href="#city" class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Город
+    </a>
+    <a href="#contacts" class="nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6zm8 5H6v-2h8zm4-6H6V6h12z"/></svg>
+      Связь
+    </a>
+  </nav>
+
+  <script>
+    function copyWifi() {
+      const pass = document.getElementById('wifi-pass').innerText;
+      navigator.clipboard.writeText(pass).then(() => {
+        const btn = document.querySelector('.wifi-copy-btn');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ Скопирован!';
+        btn.style.background = '#059669';
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.background = '';
+        }, 2200);
+      });
+    }
+
+    function toggleQr() {
+      const el = document.getElementById('qr-box');
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Подсветка активной вкладки таббара
+    const navButtons = document.querySelectorAll('.nav-btn');
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

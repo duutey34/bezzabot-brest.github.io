@@ -1,66 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { MapPin, Sun, Heart } from 'lucide-react';
 import { APARTMENT_INFO } from '../data/guideData';
 
 export const Hero: React.FC = () => {
-  // Candidate image sources: user's uploaded filename, local sunset.jpg, and localStorage custom photo
-  const defaultUserPhoto = 'изображение_viber_2026-10-06_08-54-31-290.jpg';
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [photoSrc, setPhotoSrc] = useState<string>(() => {
-    return localStorage.getItem('guestbook_hero_photo') || defaultUserPhoto;
+    return localStorage.getItem('apartment_sunset_image') || 'sunset.jpg';
   });
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageFailed, setImageFailed] = useState(false);
+
+  const handleFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      if (dataUrl) {
+        setPhotoSrc(dataUrl);
+        try {
+          localStorage.setItem('apartment_sunset_image', dataUrl);
+        } catch {
+          // ignore quota limits
+        }
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    if (e.dataTransfer.files?.[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
 
   return (
-    <section id="top" className="relative w-full h-screen h-[100dvh] min-h-[580px] flex flex-col justify-end text-white overflow-hidden bg-[#141b2b]">
-      {/* 1. Precise gradient matching the user's actual 9th floor balcony twilight photo */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700"
-        style={{
-          background: `
-            linear-gradient(180deg, 
-              rgba(18, 25, 38, 0.15) 0%, 
-              rgba(23, 32, 50, 0.35) 35%, 
-              rgba(45, 30, 25, 0.55) 55%, 
-              rgba(215, 75, 15, 0.72) 68%, 
-              rgba(20, 15, 12, 0.90) 82%, 
-              rgba(16, 12, 10, 0.98) 100%
-            ),
-            radial-gradient(ellipse 120% 40% at 50% 65%, #ff521a 0%, #d44400 40%, transparent 80%),
-            linear-gradient(180deg, #161e2e 0%, #202b3f 30%, #3a475d 50%, #b8621b 63%, #ff5500 68%, #14100d 80%, #0d0a08 100%)
-          `,
+    <section 
+      id="top" 
+      className="relative w-full h-screen h-[100dvh] min-h-[580px] flex flex-col justify-end text-white overflow-hidden bg-[#10141e]"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={handleDrop}
+    >
+      {/* Hidden file picker for sunset photo */}
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        accept="image/*" 
+        className="hidden" 
+        onChange={(e) => {
+          if (e.target.files?.[0]) handleFile(e.target.files[0]);
+        }} 
+      />
+
+      {/* 1. Real photo layer - ultra sharp, full brightness and contrast */}
+      <img
+        src={photoSrc}
+        alt="Закат с балкона 9 этажа, Брест (нажмите, чтобы выбрать своё фото)"
+        referrerPolicy="no-referrer"
+        title="Кликните или перетащите файл, чтобы обновить фото заката"
+        className="absolute inset-0 w-full h-full object-cover object-center contrast-[1.02] brightness-[1.01] cursor-pointer"
+        onClick={() => fileInputRef.current?.click()}
+        onError={() => {
+          if (photoSrc === 'sunset.jpg') {
+            setPhotoSrc('изображение_viber_2026-10-06_08-54-31-290.jpg');
+          }
         }}
       />
 
-      {/* 2. Real user photo layer (stretched to fill the entire screen down to the menu) */}
-      {!imageFailed && (
-        <img
-          src={photoSrc}
-          alt="Закат с балкона 9 этажа, Брест"
-          referrerPolicy="no-referrer"
-          className={`absolute inset-0 w-full h-full object-cover object-center sm:object-bottom transition-opacity duration-700 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setImageLoaded(true)}
-          onError={() => {
-            // Try fallback to sunset.jpg or stay on the custom gradient
-            if (photoSrc !== 'sunset.jpg' && photoSrc !== '/sunset.jpg') {
-              setPhotoSrc('sunset.jpg');
-            } else {
-              setImageFailed(true);
-            }
-          }}
-        />
-      )}
-
-      {/* Gradient dark scrim for high contrast typography legibility */}
+      {/* 2. Delicate bottom gradient strictly behind text for perfect readability (no blur, 100% sharp photo above) */}
       <div 
-        className="absolute inset-0 bg-gradient-to-t from-[#14100e] via-[#14100e]/80 to-transparent pointer-events-none"
-        style={{ height: '75%', top: '25%' }}
+        className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0e0b09]/95 via-[#0e0b09]/60 to-transparent pointer-events-none"
+        style={{ height: '48%' }}
       />
-
-      {/* Atmospheric sunset horizon line glow */}
-      <div className="absolute top-[60%] left-0 right-0 h-32 bg-gradient-to-b from-orange-500/20 via-amber-600/10 to-transparent blur-2xl pointer-events-none" />
 
       {/* Main Content (positioned right above the bottom menu bar) */}
       <div className="relative z-10 w-full max-w-[560px] mx-auto px-5 pt-12 pb-[calc(68px+env(safe-area-inset-bottom,0px)+20px)] sm:pb-24">
