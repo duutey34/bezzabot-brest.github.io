@@ -14,7 +14,7 @@ export interface GuidePlace {
 export const APARTMENT_INFO = {
   name: 'БЕЗ ЗАБОТ',
   tagline: 'книга гостя',
-  address: 'Брест, ул. Петра Ивашутина, 6 • эт. 9, кв. 80',
+  address: 'Брест, ул. Петра Ивашутина, 6 • 9 этаж',
   mapsUrl: 'https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6',
   googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Брест,+ул.+Петра+Ивашутина,+6',
   homeTaxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&app=taxi',

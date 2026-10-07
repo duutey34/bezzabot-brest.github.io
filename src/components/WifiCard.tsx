@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wifi, Copy, Check, QrCode, X, Sparkles, ShieldCheck } from 'lucide-react';
+import { Wifi, Copy, Check, QrCode, X, Sparkles, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 import { APARTMENT_INFO } from '../data/guideData';
 
 interface WifiCardProps {
@@ -9,6 +9,7 @@ interface WifiCardProps {
 
 export const WifiCard: React.FC<WifiCardProps> = ({ copied, onCopy }) => {
   const [showQr, setShowQr] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // High-res QR code generated for Wi-Fi direct connection
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(
@@ -39,19 +40,34 @@ export const WifiCard: React.FC<WifiCardProps> = ({ copied, onCopy }) => {
       </div>
 
       {/* Password display container */}
-      <div className="mb-4 bg-white p-3.5 rounded-2xl border border-[#ede7df] shadow-xs flex items-center justify-between">
-        <div>
+      <div className="mb-4 bg-white p-3.5 rounded-2xl border border-[#ede7df] shadow-xs flex items-center justify-between gap-3">
+        <div className="flex-1 min-w-0">
           <div className="text-[10px] uppercase tracking-wider font-semibold text-[#8b7e73]">
             Пароль от сети
           </div>
-          <div className="text-xl sm:text-2xl font-mono font-bold text-[#2c221b] tracking-widest select-all">
-            {APARTMENT_INFO.wifi.password}
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="text-xl sm:text-2xl font-mono font-bold text-[#2c221b] tracking-wider select-all">
+              {showPassword ? APARTMENT_INFO.wifi.password : '••••••••'}
+            </span>
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="p-1.5 rounded-lg text-[#8b7e73] hover:text-[#2c221b] hover:bg-[#f5efe6] active:scale-95 transition-all cursor-pointer"
+              title={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+              aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+            >
+              {showPassword ? (
+                <EyeOff className="w-5 h-5 text-[#c86c12]" />
+              ) : (
+                <Eye className="w-5 h-5" />
+              )}
+            </button>
           </div>
         </div>
 
         <button
           onClick={() => setShowQr(!showQr)}
-          className="text-xs text-[#c86c12] font-semibold hover:text-[#9e540b] flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#fbf3ea] hover:bg-[#f5e9da] border border-[#ecd8c5] transition cursor-pointer active:scale-95"
+          className="text-xs text-[#c86c12] font-semibold hover:text-[#9e540b] flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#fbf3ea] hover:bg-[#f5e9da] border border-[#ecd8c5] transition cursor-pointer active:scale-95 shrink-0"
           title="Показать QR-код для подключения"
         >
           <QrCode className="w-4 h-4" />
