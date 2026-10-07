@@ -6,16 +6,19 @@ export interface GuidePlace {
   badgeType: 'accent' | 'time';
   description: string;
   mapQuery?: string;
+  mapUrl?: string;
+  taxiUrl?: string;
   icon?: string;
 }
 
 export const APARTMENT_INFO = {
   name: 'БЕЗ ЗАБОТ',
   tagline: 'книга гостя',
-  address: 'Брест, ул. Петра Ивашутина, 6',
+  address: 'Брест, ул. Петра Ивашутина, 6 • 9 этаж',
   mapsUrl: 'https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6',
   googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Брест,+ул.+Петра+Ивашутина,+6',
-  description: 'Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и панорамным видом на закат. Все подсказки по квартире и городу собраны ниже 👇',
+  homeTaxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&app=taxi',
+  description: 'Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и панорамным видом на закат. Все подсказки по апартаментам и городу собраны ниже 👇',
   checkIn: 'с 14:00',
   checkOut: 'до 12:00',
   wifi: {
@@ -44,7 +47,8 @@ export const NEARBY_PLACES: GuidePlace[] = [
     badge: '2 мин пешком',
     badgeType: 'accent',
     description: 'Прямо в нашем квартале (ул. Ивашутина). Свежий ароматный кофе, круассаны и сытные завтраки.',
-    mapQuery: 'кафе Brasileiro Брест ул Ивашутина',
+    mapUrl: 'https://maps.yandex.ru/?text=Брест,+кафе+Brasileiro',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0634&end-lon=23.7185&app=taxi',
     icon: '☕',
   },
   {
@@ -54,7 +58,8 @@ export const NEARBY_PLACES: GuidePlace[] = [
     badge: '1–2 мин пешком',
     badgeType: 'time',
     description: 'Буквально через дорогу: фермерская молочка, свежий хлеб, питьевая вода, бакалея и снеки.',
-    mapQuery: 'магазин Продукточка Брест ул Ивашутина',
+    mapUrl: 'https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0625&end-lon=23.7190&app=taxi',
     icon: '🛒',
   },
   {
@@ -64,7 +69,8 @@ export const NEARBY_PLACES: GuidePlace[] = [
     badge: '5–7 мин пешком',
     badgeType: 'time',
     description: 'Ул. Рябиновая, 1А. Горячая пицца из печи (на вынос или в зале), кулинария, свежая выпечка.',
-    mapQuery: 'Папа Пицца Брест Рябиновая 1А',
+    mapUrl: 'https://maps.yandex.ru/?text=Брест,+ул.+Рябиновая,+1А',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0645&end-lon=23.7258&app=taxi',
     icon: '🍕',
   },
   {
@@ -74,7 +80,8 @@ export const NEARBY_PLACES: GuidePlace[] = [
     badge: '5–7 мин пешком',
     badgeType: 'time',
     description: 'Через дорогу (ул. Екельчика): зелёные аллеи для утренних прогулок, храм и открытые теннисные корты.',
-    mapQuery: 'Парк 1000-летия Бреста',
+    mapUrl: 'https://maps.yandex.ru/?text=Брест,+парк+1000-летия',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0610&end-lon=23.7250&app=taxi',
     icon: '🌳',
   },
   {
@@ -84,22 +91,13 @@ export const NEARBY_PLACES: GuidePlace[] = [
     badge: '15 мин пешком / 4 мин авто',
     badgeType: 'time',
     description: 'Исторические земляные валы и капониры внешнего пояса крепости. Спокойный природный парк.',
-    mapQuery: 'Форт 4 Брест',
+    mapUrl: 'https://maps.yandex.ru/?text=Брест,+Форт+4',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0722&end-lon=23.7088&app=taxi',
     icon: '🛡️',
   },
 ];
 
 export const CITY_PLACES: GuidePlace[] = [
-  {
-    id: 'sovetskaya',
-    category: 'sights',
-    title: 'Пешеходная ул. Советская (фонарщик)',
-    badge: '12–14 мин на авто',
-    badgeType: 'time',
-    description: 'Главный променад города. Каждый вечер в сумерках фонарщик вручную зажигает керосиновые фонари. Парковка: ул. Гоголя / Орджоникидзе.',
-    mapQuery: 'Брест ул Советская пешеходная',
-    icon: '🕯️',
-  },
   {
     id: 'fortress',
     category: 'sights',
@@ -107,8 +105,20 @@ export const CITY_PLACES: GuidePlace[] = [
     badge: '12–14 мин на авто',
     badgeType: 'time',
     description: 'Монумент «Мужество», Холмские ворота и уникальный археологический музей XIII века. Бесплатная удобная парковка — у Северных ворот (ул. Зубачева).',
-    mapQuery: 'Мемориальный комплекс Брестская крепость-герой',
+    mapUrl: 'https://maps.yandex.ru/?text=52.0882,23.6601',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0882&end-lon=23.6601&app=taxi',
     icon: '⭐',
+  },
+  {
+    id: 'sovetskaya',
+    category: 'sights',
+    title: 'Пешеходная ул. Советская (фонарщик)',
+    badge: '12–14 мин на авто',
+    badgeType: 'time',
+    description: 'Главный променад города. Каждый вечер в сумерках фонарщик вручную зажигает керосиновые фонари. Парковка: ул. Гоголя / Орджоникидзе.',
+    mapUrl: 'https://maps.yandex.ru/?text=52.0911,23.6936',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0911&end-lon=23.6936&app=taxi',
+    icon: '🕯️',
   },
   {
     id: 'gogol-allee',
@@ -117,7 +127,8 @@ export const CITY_PLACES: GuidePlace[] = [
     badge: '12–14 мин на авто',
     badgeType: 'time',
     description: 'Десятки уникальных авторских кованых скульптур по мотивам повестей Гоголя («Нос», «Вечера на хуторе близ Диканьки»).',
-    mapQuery: 'Аллея фонарей Брест ул Гоголя',
+    mapUrl: 'https://maps.yandex.ru/?text=52.0911,23.6936',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0911&end-lon=23.6936&app=taxi',
     icon: '🎨',
   },
   {
@@ -127,7 +138,8 @@ export const CITY_PLACES: GuidePlace[] = [
     badge: '10–12 мин на авто',
     badgeType: 'time',
     description: 'Ивовые тенистые аллеи вдоль реки, прокат велосипедов и самокатов. В сезон от Городского сада (ул. Ленина, 2) отправляется прогулочный теплоход.',
-    mapQuery: 'Набережная Франциска Скорины Брест',
+    mapUrl: 'https://maps.yandex.ru/?text=52.0838,23.6874',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0838&end-lon=23.6874&app=taxi',
     icon: '🚢',
   },
   {
@@ -137,7 +149,8 @@ export const CITY_PLACES: GuidePlace[] = [
     badge: '12–14 мин на авто',
     badgeType: 'time',
     description: 'Аттракционы, лебединые пруды и знаменитый деревянный сруб с горячими белорусскими драниками в глиняных горшочках.',
-    mapQuery: 'Парк культуры и отдыха 1 Мая Брест',
+    mapUrl: 'https://maps.yandex.ru/?text=52.0945,23.6811',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0945&end-lon=23.6811&app=taxi',
     icon: '🎡',
   },
 ];
@@ -150,7 +163,8 @@ export const REGION_PLACES: GuidePlace[] = [
     badge: '65 км • ~55 мин',
     badgeType: 'accent',
     description: 'Реликтовый первобытный лес Европы, просторные вольеры с зубрами, Музей природы и Поместье Деда Мороза. По пути — старинная башня XIII века в Каменце («Белая вежа»).',
-    mapQuery: 'Национальный парк Беловежская пуща Каменюки',
+    mapUrl: 'https://maps.yandex.ru/?text=52.5564,23.7997',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.5564&end-lon=23.7997&app=taxi',
     icon: '🌲',
   },
   {
@@ -160,7 +174,8 @@ export const REGION_PLACES: GuidePlace[] = [
     badge: '135 км • 1 ч 30 мин',
     badgeType: 'accent',
     description: 'Неоготический дворец Пусловских с 12 башнями и романтичные руины дворцового комплекса магнатов Сапег («Белорусский Версаль»).',
-    mapQuery: 'Коссовский замок дворец Пусловских',
+    mapUrl: 'https://maps.yandex.ru/?text=52.7656,25.1216',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.7656&end-lon=25.1216&app=taxi',
     icon: '🏰',
   },
   {
@@ -170,7 +185,8 @@ export const REGION_PLACES: GuidePlace[] = [
     badge: '205 км • 2 ч (трасса М1)',
     badgeType: 'accent',
     description: 'Огромный современный ландшафтный сафари-парк: ламы, альпаки, кенгуру и олени свободно подходят к посетителям. Рекомендуем закладывать от 4–5 часов.',
-    mapQuery: 'Парк животных Диприз Барановичи',
+    mapUrl: 'https://maps.yandex.ru/?text=53.0984,26.0428',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=53.0984&end-lon=26.0428&app=taxi',
     icon: '🦙',
   },
 ];

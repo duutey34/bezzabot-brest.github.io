@@ -10,6 +10,7 @@ import { CheckInOutTiles } from './components/CheckInOutTiles';
 import { WifiCard } from './components/WifiCard';
 import { TrashGuide } from './components/TrashGuide';
 import { HouseRules } from './components/HouseRules';
+import { CheckOutChecklist } from './components/CheckOutChecklist';
 import { AppliancesGuide } from './components/AppliancesGuide';
 import { CityGuide } from './components/CityGuide';
 import { ContactsCard } from './components/ContactsCard';
@@ -55,8 +56,11 @@ export default function App() {
         {/* Схема выноса мусора */}
         <TrashGuide />
 
-        {/* Правила проживания и тишина (запрет курения на балконе и в квартире) */}
+        {/* Правила проживания и тишина (запрет курения на балконе и в апартаментах) */}
         <HouseRules />
+
+        {/* Интерактивный чек-лист быстрого выезда с отправкой сообщения */}
+        <CheckOutChecklist />
 
         {/* Бытовая техника, Smart TV и балкон с кондиционером */}
         <AppliancesGuide />

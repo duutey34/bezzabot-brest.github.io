@@ -102,7 +102,7 @@ export const AppliancesGuide: React.FC = () => {
           <div className="flex items-start gap-2.5">
             <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              Санузел в квартире комфортный раздельный. Паровой утюг и гладильная доска находятся в гардеробной зоне / спальне.
+              Санузел комфортный раздельный. Паровой утюг и гладильная доска находятся в гардеробной зоне / спальне.
             </div>
           </div>
         </div>

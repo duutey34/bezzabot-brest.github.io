@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Без забот • Брест | Книга гостя</title>
-  <meta name="description" content="Интерактивная книга гостя и путеводитель по апартаментам «Без забот» в Бресте: пароль Wi-Fi, бытовая техника, правила, вынос мусора и гид по городу.">
+  <meta name="description" content="Интерактивная книга гостя и путеводитель по апартаментам «Без забот» в Бресте: пароль Wi-Fi, бытовая техника, правила, вынос мусора, гид по достопримечательностям и заказ такси в Яндекс Go.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,9 @@
       --border: #e9e5de;
       --success: #059669;
       --danger: #dc2626;
+      --taxi-yellow: #ffcc00;
+      --taxi-yellow-border: #e6b800;
+      --taxi-dark: #1a1a1a;
       --tabbar-bg: rgba(24, 21, 19, 0.96);
       --nav-height: 64px;
       --radius: 16px;
@@ -47,7 +50,7 @@
       line-height: 1.5;
     }
 
-    /* 1. ГЛАВНЫЙ ЭКРАН (HERO) НА ВСЮ ВЫСОТУ */
+    /* 1. ГЛАВНЫЙ ЭКРАН (HERO) НА ВСЮ ВЫСОТУ 100DVH ДО МЕНЮ */
     .hero {
       position: relative;
       width: 100%;
@@ -59,8 +62,8 @@
       background: 
         linear-gradient(180deg, 
           transparent 0%, 
-          transparent 42%, 
-          rgba(14, 11, 9, 0.6) 70%, 
+          transparent 40%, 
+          rgba(14, 11, 9, 0.55) 68%, 
           rgba(14, 11, 9, 0.95) 100%
         ),
         url('sunset.jpg?v=20261007') center center / cover no-repeat,
@@ -91,11 +94,11 @@
       gap: 6px;
       background: var(--accent);
       color: #ffffff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 20px;
     }
 
@@ -118,20 +121,20 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #f3f0eb;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-decoration: none;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      padding: 7px 12px;
+      padding: 6px 12px;
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .hero-desc {
-      font-size: 14px;
+      font-size: 13.5px;
       color: #ded9d2;
       line-height: 1.45;
     }
@@ -140,14 +143,14 @@
     .container {
       max-width: 540px;
       margin: 0 auto;
-      padding: 20px 16px;
+      padding: 16px 14px;
     }
 
     .section-title {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--wood-dark);
-      margin: 32px 0 14px;
+      margin: 28px 0 12px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -168,7 +171,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
@@ -236,7 +239,7 @@
       background: #fffdfa;
       border: 2px solid #ecd8c5;
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 16px;
       margin-bottom: 14px;
     }
 
@@ -244,7 +247,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .wifi-actions {
@@ -313,7 +316,7 @@
     }
 
     summary {
-      padding: 16px;
+      padding: 15px 16px;
       font-weight: 600;
       font-size: 15px;
       cursor: pointer;
@@ -407,13 +410,13 @@
       margin-top: 10px;
     }
 
-    /* МЕСТА */
+    /* МЕСТА И КАРТОЧКИ */
     .place-item {
       background: #faf8f5;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 8px;
+      padding: 13px;
+      margin-bottom: 10px;
     }
 
     .place-header {
@@ -430,9 +433,290 @@
       font-weight: 600;
       padding: 2px 7px;
       border-radius: 6px;
+      white-space: nowrap;
     }
     .badge-time { background: #f0ede8; color: #585047; }
     .badge-accent { background: var(--accent-soft); color: var(--accent); }
+
+    /* ДВОЙНЫЕ КНОПКИ ДЕЙСТВИЙ (КАРТА И ТАКСИ) */
+    .place-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-action {
+      flex: 1;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 8px;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s, background-color 0.15s;
+      cursor: pointer;
+    }
+
+    .btn-action:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    .btn-map {
+      background: #f0ece6;
+      border: 1px solid #dfd8cf;
+      color: #3e2e23;
+    }
+
+    .btn-taxi {
+      background: var(--taxi-yellow);
+      border: 1px solid var(--taxi-yellow-border);
+      color: var(--taxi-dark);
+    }
+
+    /* ИНТЕРАКТИВНЫЙ ЧЕК-ЛИСТ ВЫЕЗДА */
+    .checkout-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      margin: 14px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .checkout-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .checkout-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--wood-dark);
+    }
+
+    .checkout-counter {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: #eee8e0;
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #c86c12, #059669);
+      border-radius: 99px;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #faf8f5;
+      border: 1px solid #ede7df;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .check-item:active {
+      transform: scale(0.99);
+    }
+
+    .check-item.checked {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .check-input {
+      display: none;
+    }
+
+    .custom-checkbox {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid #c9c0b5;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .custom-checkbox::after {
+      content: '';
+      width: 5px;
+      height: 10px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.2s ease;
+      margin-bottom: 2px;
+    }
+
+    .check-item.checked .custom-checkbox {
+      background: #059669;
+      border-color: #059669;
+    }
+
+    .check-item.checked .custom-checkbox::after {
+      transform: rotate(45deg) scale(1);
+    }
+
+    .check-text {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #2c221b;
+      transition: all 0.2s ease;
+    }
+
+    .check-item.checked .check-text {
+      color: #65a30d;
+      text-decoration: line-through;
+      opacity: 0.85;
+    }
+
+    .all-done-banner {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #166534;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .checkout-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-checkout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 12.5px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-checkout:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    .btn-checkout-wa {
+      background: #25D366;
+    }
+
+    .btn-checkout-tg {
+      background: #229ED9;
+    }
+
+    .btn-checkout.pulse {
+      animation: gentlePulse 2s infinite ease-in-out;
+      box-shadow: 0 0 16px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-checkout-tg.pulse {
+      box-shadow: 0 0 16px rgba(34, 158, 217, 0.45);
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    /* СПЕЦИАЛЬНАЯ КНОПКА: ТАКСИ В АПАРТАМЕНТЫ (ДОМОЙ) */
+    .home-taxi-box {
+      background: linear-gradient(135deg, #fffdf2 0%, #fff9e6 100%);
+      border: 2px solid #ffe066;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 16px 0;
+      box-shadow: 0 4px 14px rgba(255, 204, 0, 0.15);
+    }
+
+    .home-taxi-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2c221b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .home-taxi-desc {
+      font-size: 12.5px;
+      color: #6b645c;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .btn-taxi-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--taxi-yellow);
+      border: 1px solid var(--taxi-yellow-border);
+      color: var(--taxi-dark);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(255, 204, 0, 0.35);
+      transition: background 0.15s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .btn-taxi-home:active {
+      transform: scale(0.98);
+      background: #f0c000;
+    }
 
     /* КОНТАКТЫ */
     .host-phones {
@@ -478,7 +762,7 @@
     .btn-wa { background: #25D366; }
     .btn-vb { background: #7360f2; grid-column: span 2; }
 
-    /* 4. ФИКСИРОВАННЫЙ ТАББАР НА ВСЮ ШИРИНУ */
+    /* ФИКСИРОВАННЫЙ ТАББАР НА ВСЮ ШИРИНУ */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -534,9 +818,9 @@
       </div>
       <h1 class="hero-title">БЕЗ ЗАБОТ</h1>
       <a href="https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6" class="hero-address" target="_blank">
-        📍 Брест, ул. Петра Ивашутина, 6
+        📍 Брест, ул. Петра Ивашутина, 6 • 9 этаж
       </a>
-      <p class="hero-desc">Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и видом на закат. Все подсказки по квартире и городу собраны ниже 👇</p>
+      <p class="hero-desc">Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и видом на закат. Все подсказки по апартаментам и городу собраны ниже 👇</p>
     </div>
   </section>
 
@@ -636,15 +920,15 @@
     </details>
 
     <!-- ПРАВИЛА И ТИШИНА -->
-    <details>
+    <details id="rules">
       <summary>
         <span>📜 Правила проживания и тишина</span>
         <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </summary>
       <div class="acc-content">
         <ul style="padding-left: 18px; display: flex; flex-direction: column; gap: 8px;">
-          <li><b>Курение строго запрещено 🚭:</b> в квартире, на балконе и в подъезде курить нельзя. Места для курения — только на улице.</li>
-          <li><b>Без шумных вечеринок 🚫:</b> квартира создана для спокойного семейного отдыха и не сдаётся для праздников.</li>
+          <li><b>Курение строго запрещено 🚭:</b> в апартаментах, на балконе и в подъезде курить нельзя. Места для курения — только на улице.</li>
+          <li><b>Без шумных вечеринок 🚫:</b> апартаменты созданы для спокойного семейного отдыха и не сдаются для праздников.</li>
           <li><b>Режим тишины (Закон РБ) 🤫:</b> просим соблюдать тишину с <b>23:00 до 07:00</b>.</li>
           <li><b>При выходе из дома:</b> закрывайте окна, запирайте дверь на ключ, выключайте свет и мощные электроприборы.</li>
           <li><b>Безбарьерный вход ♿:</b> подъезд оборудован плавным заездом без ступеней от тротуара прямо до лифта.</li>
@@ -690,7 +974,7 @@
       <div class="acc-content">
         • <b>Стиральная машина:</b> рекомендуем удобный режим «Быстро 30 мин».<br>
         • В ванной есть тропический душ, полотенцесушитель, фен и свежие полотенца.<br>
-        • Санузел в квартире раздельный. Утюг и гладильная доска — в спальне/прихожей.
+        • Санузел комфортный раздельный. Утюг и гладильная доска — в спальне/прихожей.
       </div>
     </details>
 
@@ -704,6 +988,19 @@
         • <b>Кондиционер:</b> значок ❄️ — охлаждение, значок ☀️ — обогрев. Комфортная температура: 22–23°C.
       </div>
     </details>
+
+    <!-- СПЕЦИАЛЬНЫЙ БЛОК: ТАКСИ В АПАРТАМЕНТЫ (ДОМОЙ) -->
+    <div class="home-taxi-box">
+      <div class="home-taxi-title">
+        <span>🚕 Такси в апартаменты (Домой)</span>
+      </div>
+      <div class="home-taxi-desc">
+        Быстрый заказ машины в Яндекс Go прямо к подъезду (ул. Петра Ивашутина, 6). Точка назначения уже установлена:
+      </div>
+      <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&app=taxi" target="_blank" class="btn-taxi-home">
+        🚕 Открыть Яндекс Go домой
+      </a>
+    </div>
 
     <!-- ГОРОД И ЛОКАЦИИ -->
     <h2 class="section-title" id="city">🗺️ Гид по Бресту и району</h2>
@@ -720,34 +1017,58 @@
             <span class="badge badge-accent">2 мин</span>
           </div>
           <span style="font-size: 13px; color: var(--text-muted);">Прямо в нашем квартале (ул. Ивашутина). Свежий кофе, круассаны и сытные завтраки.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=Брест,+кафе+Brasileiro" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0634&end-lon=23.7185&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
         <div class="place-item">
           <div class="place-header">
             <b>🛒 Магазин «Продукточка»</b>
             <span class="badge badge-time">1–2 мин</span>
           </div>
           <span style="font-size: 13px; color: var(--text-muted);">Через дорогу: фермерская молочка, свежий хлеб, вода, бакалея и снеки.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0625&end-lon=23.7190&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
         <div class="place-item">
           <div class="place-header">
             <b>🍕 Пиццерия «Папа Пицца» & супермаркет «Санта»</b>
             <span class="badge badge-time">5–7 мин</span>
           </div>
           <span style="font-size: 13px; color: var(--text-muted);">Ул. Рябиновая, 1А. Пицца из печи с собой или в уютном зале, кулинария и выпечка.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=Брест,+ул.+Рябиновая,+1А" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0645&end-lon=23.7258&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
         <div class="place-item">
           <div class="place-header">
             <b>🌳 Парк 1000-летия Бреста</b>
             <span class="badge badge-time">5–7 мин</span>
           </div>
           <span style="font-size: 13px; color: var(--text-muted);">Через дорогу (ул. Екельчика): сеть дорожек для прогулок, храм и теннисные корты.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=Брест,+парк+1000-летия" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0610&end-lon=23.7250&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
         <div class="place-item">
           <div class="place-header">
             <b>🛡️ Форт № 4 Брестской крепости</b>
             <span class="badge badge-time">15 мин / 4 мин авто</span>
           </div>
           <span style="font-size: 13px; color: var(--text-muted);">Земляные валы и капониры внешнего пояса крепости. Исторический тихий парк.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=Брест,+Форт+4" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0722&end-lon=23.7088&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
       </div>
     </details>
@@ -758,40 +1079,69 @@
         <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </summary>
       <div class="acc-content">
-        <div class="place-item">
-          <div class="place-header">
-            <b>🕯️ Пешеходная ул. Советская (фонарщик)</b>
-            <span class="badge badge-time">12–14 мин</span>
-          </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Главный променад. Каждый вечер в сумерках фонарщик вручную зажигает керосиновые фонари. Парковка: ул. Гоголя / Орджоникидзе.</span>
-        </div>
+        <!-- 1. Брестская крепость -->
         <div class="place-item">
           <div class="place-header">
             <b>⭐ Брестская крепость-герой & музей «Берестье»</b>
             <span class="badge badge-time">12–14 мин</span>
           </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Монумент «Мужество», Холмские ворота и музей XIII века. Удобная бесплатная парковка — у Северных ворот (ул. Зубачева).</span>
+          <span style="font-size: 13px; color: var(--text-muted);">Монумент «Мужество», Холмские ворота и музей XIII века. Бесплатная парковка — у Северных ворот (ул. Зубачева).</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.0882,23.6601" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0882&end-lon=23.6601&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
+        <!-- 2. Улица Советская -->
+        <div class="place-item">
+          <div class="place-header">
+            <b>🕯️ Пешеходная ул. Советская (фонарщик)</b>
+            <span class="badge badge-time">12–14 мин</span>
+          </div>
+          <span style="font-size: 13px; color: var(--text-muted);">Главный променад города. Каждый вечер в сумерках фонарщик вручную зажигает керосиновые фонари.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.0911,23.6936" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0911&end-lon=23.6936&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
+        </div>
+
+        <!-- 3. Аллея кованых фонарей -->
         <div class="place-item">
           <div class="place-header">
             <b>🎨 Аллея кованых фонарей (ул. Гоголя)</b>
             <span class="badge badge-time">12–14 мин</span>
           </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Десятки арт-скульптур по мотивам повестей Гоголя («Нос», «Вечера на хуторе»).</span>
+          <span style="font-size: 13px; color: var(--text-muted);">Десятки уникальных арт-скульптур по мотивам повестей Гоголя («Нос», «Вечера на хуторе»).</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.0911,23.6936" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0911&end-lon=23.6936&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
+        <!-- 4. Набережная Мухавца -->
         <div class="place-item">
           <div class="place-header">
             <b>🚢 Набережная Мухавца и теплоход «Гродно»</b>
             <span class="badge badge-time">10–12 мин</span>
           </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Ивовые аллеи вдоль реки. В сезон от Городского сада (ул. Ленина, 2) ходит экскурсионный теплоход.</span>
+          <span style="font-size: 13px; color: var(--text-muted);">Живописная набережная вдоль реки. От Городского сада (ул. Ленина, 2) отходит экскурсионный теплоход.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.0838,23.6874" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0838&end-lon=23.6874&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
+        <!-- 5. Парк 1 Мая & Трактир «У озера» -->
         <div class="place-item">
           <div class="place-header">
             <b>🎡 Парк 1 Мая & Трактир «У озера»</b>
             <span class="badge badge-time">12–14 мин</span>
           </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Аттракционы, лебединые пруды и сруб с горячими белорусскими драниками в глиняных горшочках.</span>
+          <span style="font-size: 13px; color: var(--text-muted);">Аттракционы, лебединые пруды и знаменитый сруб с горячими белорусскими драниками в горшочках.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.0945,23.6811" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0945&end-lon=23.6811&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
       </div>
     </details>
@@ -802,26 +1152,43 @@
         <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </summary>
       <div class="acc-content">
+        <!-- Беловежская пуща -->
         <div class="place-item">
           <div class="place-header">
             <b>1. Беловежская пуща & Каменецкая вежа</b>
             <span class="badge badge-accent">65 км • ~55 мин</span>
           </div>
           <span style="font-size: 13px; color: var(--text-muted);">Реликтовый лес, вольеры с зубрами, Музей природы и Поместье Деда Мороза. По пути — оборонная башня XIII века в Каменце.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.5564,23.7997" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.5564&end-lon=23.7997&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
+        <!-- Коссовский замок -->
         <div class="place-item">
           <div class="place-header">
             <b>2. Коссовский замок & Ружанский дворец</b>
             <span class="badge badge-accent">135 км • 1 ч 30 мин</span>
           </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Неоготический дворец Пусловских с 12 башнями и монументальный Ружанский дворец Сапег («Белорусский Версаль»).</span>
+          <span style="font-size: 13px; color: var(--text-muted);">Неоготический дворец Пусловских с 12 башнями и Ружанский дворцовый комплекс Сапег («Белорусский Версаль»).</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.7656,25.1216" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.7656&end-lon=25.1216&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
+
+        <!-- Парк животных Диприз -->
         <div class="place-item">
           <div class="place-header">
-            <b>3. Парк животных в Барановичах («Диприз»)</b>
+            <b>3. Парк животных «Диприз» (Барановичи)</b>
             <span class="badge badge-accent">205 км • 2 ч (М1)</span>
           </div>
-          <span style="font-size: 13px; color: var(--text-muted);">Огромный сафари-парк: ламы, альпаки и олени свободно подходят к рукам. Запас времени — от 4–5 часов.</span>
+          <span style="font-size: 13px; color: var(--text-muted);">Огромный сафари-парк: ламы, альпаки, олени и птицы свободно подходят к рукам. Запас времени — от 4–5 часов.</span>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=53.0984,26.0428" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=53.0984&end-lon=26.0428&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
         </div>
       </div>
     </details>
@@ -840,6 +1207,16 @@
           <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 8px 0;">Аэропорт «Брест»</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~27 мин</td></tr>
           <tr><td style="padding: 8px 0;">Беловежская пуща (аг. Каменюки)</td><td style="text-align: right; font-weight: 600; color: var(--accent);">~55–60 мин</td></tr>
         </table>
+
+        <!-- Брест-Центральный ЖД вокзал двойные кнопки -->
+        <div style="margin-top: 12px; padding: 12px; background: #faf8f5; border-radius: 10px; border: 1px solid var(--border);">
+          <div style="font-weight: 600; font-size: 13px; color: var(--wood-dark); margin-bottom: 4px;">🚆 Ж/Д вокзал «Брест-Центральный»:</div>
+          <div class="place-actions">
+            <a href="https://maps.yandex.ru/?text=52.1001,23.6806" target="_blank" class="btn-action btn-map">🗺️ На карте</a>
+            <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.1001&end-lon=23.6806&app=taxi" target="_blank" class="btn-action btn-taxi">🚕 Яндекс Go</a>
+          </div>
+        </div>
+
         <div style="font-size: 12px; color: var(--text-muted); margin-top: 10px; line-height: 1.6;">
           🚖 Такси от вокзала: 12–15 мин (~10–15 BYN, Яндекс Go / 7220).<br>
           🚌 Автобус от вокзала: № 9 до ост. «Кольцевая» или «4 Форт» (далее 3 мин пешком).<br>
@@ -924,9 +1301,13 @@
     // Подсветка активной вкладки таббара
     const navButtons = document.querySelectorAll('.nav-btn');
     navButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
         navButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        if (btn.getAttribute('href') === '#top') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     });
   </script>

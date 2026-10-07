@@ -55,20 +55,23 @@ export const CityGuide: React.FC = () => {
           </p>
         </div>
 
-        <div className="mt-3 pt-2.5 border-t border-[#f0eae1] flex items-center justify-between">
-          {place.locationGroup && (
-            <span className="text-[11px] text-[#8b7e73] font-medium">
-              {place.locationGroup}
-            </span>
-          )}
+        {/* Двойные кнопки действий: Карта и Яндекс Go */}
+        <div className="place-actions mt-2.5 pt-2 border-t border-[#f0eae1] flex gap-2">
           <a
-            href={yandexUrl}
+            href={place.mapUrl || yandexUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold text-[#c86c12] hover:text-[#9e540b] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform ml-auto"
+            className="flex-1 h-9 inline-flex items-center justify-center gap-1.5 text-xs font-semibold bg-[#f0ece6] hover:bg-[#e8e2d8] border border-[#dfd8cf] text-[#3e2e23] rounded-lg transition-all active:scale-[0.98] whitespace-nowrap"
           >
-            <span>В Яндекс.Картах</span>
-            <ExternalLink className="w-3 h-3" />
+            <span>🗺️ На карте</span>
+          </a>
+          <a
+            href={place.taxiUrl || `https://3.redirect.appmetrica.yandex.com/route?app=taxi`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 h-9 inline-flex items-center justify-center gap-1.5 text-xs font-semibold bg-[#ffcc00] hover:bg-[#f5c300] border border-[#e6b800] text-[#1a1a1a] rounded-lg transition-all active:scale-[0.98] whitespace-nowrap shadow-xs"
+          >
+            <span>🚕 Яндекс Go</span>
           </a>
         </div>
       </div>
@@ -89,6 +92,25 @@ export const CityGuide: React.FC = () => {
             Проверенные места, вкусный кофе, прогулки и замки
           </p>
         </div>
+      </div>
+
+      {/* Специальный заметный блок: Такси в апартаменты (Домой) */}
+      <div className="bg-gradient-to-br from-[#fffdf2] to-[#fff9e6] border-2 border-[#ffe066] rounded-2xl p-4 mb-3.5 shadow-sm">
+        <div className="flex items-center gap-2">
+          <span className="text-lg">🚕</span>
+          <span className="text-sm font-bold text-[#2c221b]">Такси в апартаменты (Домой)</span>
+        </div>
+        <p className="text-xs text-[#6b645c] mt-1 leading-relaxed">
+          Быстрый заказ машины в Яндекс Go прямо к подъезду (ул. Петра Ивашутина, 6). Точка назначения уже забита:
+        </p>
+        <a
+          href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&app=taxi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2.5 w-full py-2.5 px-4 bg-[#ffcc00] hover:bg-[#f5c300] active:scale-[0.98] border border-[#e6b800] rounded-xl text-[#1a1a1a] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all whitespace-nowrap"
+        >
+          <span>🚕 Открыть Яндекс Go домой</span>
+        </a>
       </div>
 
       {/* Modern Search and Filter Bar */}
@@ -224,6 +246,32 @@ export const CityGuide: React.FC = () => {
                 ))}
               </tbody>
             </table>
+
+            {/* Брест-Центральный ЖД вокзал двойные кнопки */}
+            <div className="mt-3 p-3 bg-[#faf8f5] rounded-xl border border-[#ede7df]">
+              <div className="font-semibold text-xs text-[#2c221b] mb-2 flex items-center gap-1.5">
+                <span>🚆</span>
+                <span>Ж/Д вокзал «Брест-Центральный»:</span>
+              </div>
+              <div className="place-actions flex gap-2">
+                <a
+                  href="https://maps.yandex.ru/?text=52.1001,23.6806"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 h-9 inline-flex items-center justify-center gap-1.5 text-xs font-semibold bg-[#f0ece6] hover:bg-[#e8e2d8] border border-[#dfd8cf] text-[#3e2e23] rounded-lg transition-all active:scale-[0.98] whitespace-nowrap"
+                >
+                  <span>🗺️ На карте</span>
+                </a>
+                <a
+                  href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.1001&end-lon=23.6806&app=taxi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 h-9 inline-flex items-center justify-center gap-1.5 text-xs font-semibold bg-[#ffcc00] hover:bg-[#f5c300] border border-[#e6b800] text-[#1a1a1a] rounded-lg transition-all active:scale-[0.98] whitespace-nowrap shadow-xs"
+                >
+                  <span>🚕 Яндекс Go</span>
+                </a>
+              </div>
+            </div>
 
             <div className="mt-3.5 p-3.5 bg-[#fbf3ea] rounded-2xl border border-[#ecd8c5] text-xs sm:text-[13px] text-[#554b42] space-y-2.5 leading-relaxed">
               <div className="flex items-start gap-2.5">
