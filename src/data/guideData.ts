@@ -14,7 +14,7 @@ export interface GuidePlace {
 export const APARTMENT_INFO = {
   name: 'БЕЗ ЗАБОТ',
   tagline: 'книга гостя',
-  address: 'Брест, ул. Петра Ивашутина, 6 • 9 этаж',
+  address: 'Брест, ул. Петра Ивашутина, 6 • эт. 9, кв. 80',
   mapsUrl: 'https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6',
   googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Брест,+ул.+Петра+Ивашутина,+6',
   homeTaxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&app=taxi',
@@ -33,7 +33,7 @@ export const APARTMENT_INFO = {
       { display: '+375 (29) 797-70-70', raw: '+375297977070', name: 'Вадим' },
       { display: '+375 (29) 722-15-51', raw: '+375297221551', name: 'Наталья' },
     ],
-    telegram: 'https://t.me/+375297977070',
+    telegram: 'https://t.me/duutey',
     whatsapp: 'https://wa.me/375297977070',
     viber: 'viber://chat?number=%2B375297977070',
   },
@@ -116,8 +116,8 @@ export const CITY_PLACES: GuidePlace[] = [
     badge: '12–14 мин на авто',
     badgeType: 'time',
     description: 'Главный променад города. Каждый вечер в сумерках фонарщик вручную зажигает керосиновые фонари. Парковка: ул. Гоголя / Орджоникидзе.',
-    mapUrl: 'https://maps.yandex.ru/?text=52.0911,23.6936',
-    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0911&end-lon=23.6936&app=taxi',
+    mapUrl: 'https://maps.yandex.ru/?text=52.086874,23.696092',
+    taxiUrl: 'https://3.redirect.appmetrica.yandex.com/route?end-lat=52.086874&end-lon=23.696092&app=taxi',
     icon: '🕯️',
   },
   {

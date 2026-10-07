@@ -31,7 +31,20 @@ export const CheckOutChecklist: React.FC = () => {
   const encodedText = encodeURIComponent(messageText);
 
   const whatsappUrl = `https://wa.me/375297977070?text=${encodedText}`;
-  const telegramUrl = `https://t.me/share/url?url=&text=${encodedText}`;
+  const telegramUrl = 'https://t.me/duutey';
+
+  const [tgCopied, setTgCopied] = useState(false);
+
+  const handleTelegramClick = () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(messageText).then(() => {
+        setTgCopied(true);
+        setTimeout(() => setTgCopied(false), 4000);
+      }).catch(() => {
+        // ignore clipboard error, still proceed to open link
+      });
+    }
+  };
 
   return (
     <div className="bg-white border border-[#e9e5de] rounded-2xl p-4 my-3.5 shadow-sm">
@@ -106,20 +119,27 @@ export const CheckOutChecklist: React.FC = () => {
             isAllDone ? 'ring-2 ring-emerald-400 ring-offset-1 animate-pulse' : ''
           }`}
         >
-          <span>💬 Мы выехали • В WhatsApp</span>
+          <span>💬 В WhatsApp</span>
         </a>
         <a
           href={telegramUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleTelegramClick}
           className={`flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl font-semibold text-xs sm:text-sm text-white bg-[#229ED9] hover:bg-[#1e8ec3] active:scale-[0.98] transition-all shadow-sm ${
             isAllDone ? 'ring-2 ring-sky-400 ring-offset-1 animate-pulse' : ''
           }`}
         >
           <Send className="w-3.5 h-3.5" />
-          <span>В Telegram</span>
+          <span>В Telegram (@duutey)</span>
         </a>
       </div>
+
+      {tgCopied && (
+        <div className="mt-2 text-center text-xs font-semibold text-[#0369a1] bg-[#e0f2fe] border border-[#bae6fd] py-1.5 px-3 rounded-xl animate-in fade-in">
+          ✅ Текст скопирован! Открываем чат @duutey для отправки.
+        </div>
+      )}
     </div>
   );
 };

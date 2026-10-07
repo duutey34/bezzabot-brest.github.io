@@ -8,6 +8,7 @@ import { Hero } from './components/Hero';
 import { WelcomeBanner } from './components/WelcomeBanner';
 import { CheckInOutTiles } from './components/CheckInOutTiles';
 import { WifiCard } from './components/WifiCard';
+import { LamplighterWidget } from './components/LamplighterWidget';
 import { TrashGuide } from './components/TrashGuide';
 import { HouseRules } from './components/HouseRules';
 import { CheckOutChecklist } from './components/CheckOutChecklist';
@@ -53,6 +54,9 @@ export default function App() {
           onCopy={handleCopyWifi}
         />
 
+        {/* Атмосферный интерактивный виджет «Брестский фонарщик» */}
+        <LamplighterWidget />
+
         {/* Схема выноса мусора */}
         <TrashGuide />
 
@@ -74,7 +78,7 @@ export default function App() {
         {/* Тёплая подпись в конце страницы */}
         <footer className="text-center pt-4 pb-8 text-xs text-[#8a8176] space-y-1">
           <p className="font-semibold text-[#544b41]">
-            «Без забот» • Брест, ул. Петра Ивашутина, 6
+            «Без забот» • Брест, ул. Петра Ивашутина, 6 (эт. 9, кв. 80)
           </p>
           <p className="pt-0.5 text-[#9c9186]">
             Желаем вам самого уютного и приятного отдыха в Бресте! ❤️

@@ -478,6 +478,102 @@
       color: var(--taxi-dark);
     }
 
+    /* ВИДЖЕТ «БРЕСТСКИЙ ФОНАРЩИК» */
+    .lantern-widget {
+      position: relative;
+      background: linear-gradient(135deg, #1e1713 0%, #2a1d15 50%, #3d2716 100%);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      border-radius: var(--radius);
+      padding: 16px;
+      color: #ffffff;
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(217, 119, 6, 0.16);
+    }
+    .lantern-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .lantern-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fcd34d;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.32);
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .lantern-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .lantern-desc {
+      font-size: 12px;
+      color: rgba(254, 243, 199, 0.8);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .lantern-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .lantern-time-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(252, 211, 77, 0.85);
+      font-weight: 600;
+    }
+    .lantern-time-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fcd34d;
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+    .lantern-status {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fef3c7;
+      margin-top: 4px;
+    }
+    .lantern-sub {
+      font-size: 11.5px;
+      color: rgba(254, 243, 199, 0.75);
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(245, 158, 11, 0.15);
+      line-height: 1.35;
+    }
+    .lantern-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .lantern-note {
+      font-size: 10.5px;
+      color: rgba(253, 230, 138, 0.6);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.35;
+    }
+
     /* ИНТЕРАКТИВНЫЙ ЧЕК-ЛИСТ ВЫЕЗДА */
     .checkout-card {
       background: var(--card-bg);
@@ -818,7 +914,7 @@
       </div>
       <h1 class="hero-title">БЕЗ ЗАБОТ</h1>
       <a href="https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6" class="hero-address" target="_blank">
-        📍 Брест, ул. Петра Ивашутина, 6 • 9 этаж
+        📍 Брест, ул. Петра Ивашутина, 6 • эт. 9, кв. 80
       </a>
       <p class="hero-desc">Уютное пространство для отдыха всей семьи со столиком из слэба на балконе и видом на закат. Все подсказки по апартаментам и городу собраны ниже 👇</p>
     </div>
@@ -884,6 +980,71 @@
       </div>
     </div>
 
+    <!-- ВИДЖЕТ «БРЕСТСКИЙ ФОНАРЩИК» (ИНТЕРАКТИВНЫЙ ТАЙМЕР ВЕЧЕРНЕГО РИТУАЛА) -->
+    <div class="lantern-widget" id="lantern">
+      <div class="lantern-glow"></div>
+      <div class="lantern-badge">
+        <span>🏮</span> Главная традиция Бреста
+      </div>
+      <div class="lantern-title">
+        <span>🔥 Во сколько зажигают фонари сегодня</span>
+      </div>
+
+      <div class="lantern-box" style="margin-top: 8px;">
+        <p style="font-size: 13.5px; line-height: 1.5; color: #fef3c7;">
+          Сегодня, <b id="lantern-date-str">7 октября</b>, закат в Бресте — <b id="lantern-sunset-val" style="color: #fcd34d; font-size: 15px;">18:49</b>. Фонарщик выходит примерно в это время, поэтому приходить на Советскую стоит к <span id="lantern-arrive-pill" style="display: inline-block; padding: 2px 7px; border-radius: 6px; background: rgba(245, 158, 11, 0.28); color: #fef08a; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.4);">18:34</span>: так вы застанете и подготовку, и первый фонарь.
+        </p>
+
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(245, 158, 11, 0.18); display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 8px;">
+          <span id="lantern-status" style="font-size: 12px; font-weight: 700; color: #fef3c7; background: rgba(245, 158, 11, 0.2); padding: 4px 10px; border-radius: 99px; border: 1px solid rgba(245, 158, 11, 0.35);">
+            До выхода: 1 ч. 15 мин.
+          </span>
+          <span style="font-size: 11.5px; color: rgba(254, 243, 199, 0.8);">
+            📷 Золотой час для фото: <b id="lantern-golden-val">~17:49</b>
+          </span>
+        </div>
+      </div>
+
+      <!-- Отдельный заметный блок: Старт и маршрут ритуала -->
+      <div style="background: rgba(245, 158, 11, 0.16); border: 1px solid rgba(245, 158, 11, 0.32); border-radius: 12px; padding: 12px; margin-bottom: 12px; font-size: 13px; line-height: 1.5; color: #fef3c7; display: flex; align-items: flex-start; gap: 8px;">
+        <span style="font-size: 16px; line-height: 1; flex-shrink: 0;">🕯️</span>
+        <div>
+          <b style="color: #fcd34d;">Старт и маршрут:</b> Церемония начинается у пересечения Советской и улицы Островского, а дальше фонарщик идёт вдоль улицы и вручную зажигает 17 керосиновых фонарей.
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: rgba(254, 243, 199, 0.75); line-height: 1.45; margin-bottom: 12px;">
+        Точного расписания у церемонии нет — <b>Виктор Кирисюк</b> ориентируется на закат, и по наблюдениям выход сдвигается в пределах <b>±15 минут</b> от него. Время заката рассчитывается автоматически на текущую дату.
+      </div>
+
+      <!-- Кнопка раскрытия расписания на неделю -->
+      <button onclick="toggleWeekSchedule()" style="width: 100%; padding: 8px 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #fef3c7; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <span>📅 Расписание на ближайшие дни</span>
+        <span id="week-chevron">▼</span>
+      </button>
+
+      <div id="week-table-box" style="display: none; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 10px; overflow: hidden; margin-bottom: 12px; font-size: 12px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 10px; background: rgba(245, 158, 11, 0.18); font-weight: 700; color: #fcd34d; font-size: 11px;">
+          <div>Дата</div>
+          <div style="text-align: center;">Закат (выход)</div>
+          <div style="text-align: right;">Прийти к</div>
+        </div>
+        <div id="week-rows"></div>
+      </div>
+
+      <div class="lantern-actions place-actions">
+        <a href="https://maps.yandex.ru/?rtext=52.0622,23.7483~52.086874,23.696092&rtt=auto" target="_blank" class="btn-action btn-map" style="background: rgba(255,255,255,0.15); color: #ffffff; border-color: rgba(255,255,255,0.25);">
+          🗺️ Маршрут на карте
+        </a>
+        <a href="https://3.redirect.appmetrica.yandex.com/route?start-lat=52.0622&start-lon=23.7483&end-lat=52.086874&end-lon=23.696092&app=taxi" target="_blank" class="btn-action btn-taxi">
+          🚕 Яндекс Go
+        </a>
+      </div>
+      <div style="font-size: 10.5px; color: rgba(253, 230, 138, 0.6); text-align: center; margin-top: 8px;">
+        Точка назначения: место фонарщика на ул. Советской (52.086874, 23.696092).
+      </div>
+    </div>
+
     <!-- ВЫНОС МУСОРА (СХЕМА + ЯНДЕКС ТОЧКА) -->
     <details style="border: 2px solid #ecd8c5;" id="trash">
       <summary>
@@ -935,6 +1096,55 @@
         </ul>
       </div>
     </details>
+
+    <!-- ИНТЕРАКТИВНЫЙ ЧЕК-ЛИСТ ВЫЕЗДА -->
+    <div class="card" id="checkout-card" style="margin-top: 14px; border: 1px solid #e9e5de;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div style="font-weight: 700; font-size: 15px; color: var(--wood-dark);">🕒 Чек-лист быстрого выезда (до 12:00)</div>
+        <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">
+          Выполнено: <span id="chk-counter" style="color: var(--accent); font-weight: 700;">0</span> из 4
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div style="width: 100%; height: 6px; background: #eee8e0; border-radius: 999px; overflow: hidden; margin-bottom: 14px;">
+        <div id="chk-progress" style="width: 0%; height: 100%; background: linear-gradient(90deg, #c86c12, #059669); border-radius: 999px; transition: width 0.3s ease;"></div>
+      </div>
+
+      <!-- Checklist items -->
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+        <label class="chk-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #faf8f5; border: 1px solid #ede7df; cursor: pointer; user-select: none;">
+          <input type="checkbox" onchange="updateCheckoutProgress()" style="width: 18px; height: 18px; accent-color: #059669; cursor: pointer;">
+          <span style="font-size: 13.5px; font-weight: 500; color: #2c221b;">🪟 Окна закрыты</span>
+        </label>
+        <label class="chk-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #faf8f5; border: 1px solid #ede7df; cursor: pointer; user-select: none;">
+          <input type="checkbox" onchange="updateCheckoutProgress()" style="width: 18px; height: 18px; accent-color: #059669; cursor: pointer;">
+          <span style="font-size: 13.5px; font-weight: 500; color: #2c221b;">❄️ Кондиционер и свет выключены</span>
+        </label>
+        <label class="chk-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #faf8f5; border: 1px solid #ede7df; cursor: pointer; user-select: none;">
+          <input type="checkbox" onchange="updateCheckoutProgress()" style="width: 18px; height: 18px; accent-color: #059669; cursor: pointer;">
+          <span style="font-size: 13.5px; font-weight: 500; color: #2c221b;">🗑️ Мусор вынесен в контейнеры</span>
+        </label>
+        <label class="chk-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #faf8f5; border: 1px solid #ede7df; cursor: pointer; user-select: none;">
+          <input type="checkbox" onchange="updateCheckoutProgress()" style="width: 18px; height: 18px; accent-color: #059669; cursor: pointer;">
+          <span style="font-size: 13.5px; font-weight: 500; color: #2c221b;">🔑 Ключи оставлены на столе</span>
+        </label>
+      </div>
+
+      <!-- Action buttons -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <a href="https://wa.me/375297977070?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C!%20%D0%9C%D1%8B%20%D0%B2%D1%8B%D0%B5%D1%85%D0%B0%D0%BB%D0%B8%2C%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%20%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BB%D0%B8%20%D0%BD%D0%B0%20%D1%81%D1%82%D0%BE%D0%BB%D0%B5%2C%20%D0%B2%D1%81%D1%91%20%D0%B2%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5.%20%D0%A1%D0%BF%D0%B0%D1%81%D0%B8%D0%B1%D0%BE%20%D0%B7%D0%B0%20%D0%B3%D0%BE%D1%81%D1%82%D0%B5%D0%BF%D1%80%D0%B8%D0%B8%D0%BC%D1%81%D1%82%D0%B2%D0%BE!" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 8px; border-radius: 12px; font-weight: 600; font-size: 13px; color: #fff; background: #25D366; text-decoration: none;">
+          💬 В WhatsApp
+        </a>
+        <a href="https://t.me/duutey" onclick="handleCheckoutTg(event)" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 8px; border-radius: 12px; font-weight: 600; font-size: 13px; color: #fff; background: #229ED9; text-decoration: none;">
+          ✈️ В Telegram (@duutey)
+        </a>
+      </div>
+
+      <div id="chk-tg-notice" style="display: none; margin-top: 8px; padding: 8px 12px; background: #e0f2fe; border: 1px solid #bae6fd; color: #0369a1; font-size: 12px; font-weight: 600; text-align: center; border-radius: 10px;">
+        ✅ Текст скопирован! Открываем чат @duutey для отправки.
+      </div>
+    </div>
 
     <!-- ТЕХНИКА И SMART TV -->
     <h2 class="section-title" id="tech">🍳 Бытовая техника & TV</h2>
@@ -1245,14 +1455,14 @@
       </div>
 
       <div class="messengers-grid">
-        <a href="https://t.me/+375297977070" class="btn-msg btn-tg" target="_blank">Telegram</a>
+        <a href="https://t.me/duutey" class="btn-msg btn-tg" target="_blank">Telegram (@duutey)</a>
         <a href="https://wa.me/375297977070" class="btn-msg btn-wa" target="_blank">WhatsApp</a>
         <a href="viber://chat?number=%2B375297977070" class="btn-msg btn-vb">Viber</a>
       </div>
     </div>
 
     <footer style="text-align: center; padding: 20px 0; font-size: 12px; color: #8a8176;">
-      <p style="font-weight: 600; color: #544b41;">«Без забот» • Брест, ул. Петра Ивашутина, 6</p>
+      <p style="font-weight: 600; color: #544b41;">«Без забот» • Брест, ул. Петра Ивашутина, 6 (эт. 9, кв. 80)</p>
       <p style="margin-top: 4px; color: #9c9186;">Желаем вам самого уютного и приятного отдыха в Бресте! ❤️</p>
     </footer>
 
@@ -1297,6 +1507,147 @@
       const el = document.getElementById('qr-box');
       el.style.display = (el.style.display === 'block') ? 'none' : 'block';
     }
+
+    function updateCheckoutProgress() {
+      const checkboxes = document.querySelectorAll('#checkout-card input[type="checkbox"]');
+      let checked = 0;
+      checkboxes.forEach(cb => {
+        const item = cb.closest('.chk-item');
+        if (cb.checked) {
+          checked++;
+          item.style.background = '#f0fdf4';
+          item.style.borderColor = '#bbf7d0';
+          item.querySelector('span').style.textDecoration = 'line-through';
+          item.querySelector('span').style.opacity = '0.75';
+        } else {
+          item.style.background = '#faf8f5';
+          item.style.borderColor = '#ede7df';
+          item.querySelector('span').style.textDecoration = 'none';
+          item.querySelector('span').style.opacity = '1';
+        }
+      });
+      document.getElementById('chk-counter').innerText = checked;
+      const pct = (checked / checkboxes.length) * 100;
+      document.getElementById('chk-progress').style.width = pct + '%';
+    }
+
+    function handleCheckoutTg(e) {
+      const msg = 'Добрый день! Мы выехали, ключи оставили на столе, всё в порядке. Спасибо за гостеприимство!';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg).then(() => {
+          const notice = document.getElementById('chk-tg-notice');
+          notice.style.display = 'block';
+          setTimeout(() => { notice.style.display = 'none'; }, 4000);
+        }).catch(() => {});
+      }
+    }
+
+    // ТОЧНЫЙ АСТРОНОМИЧЕСКИЙ РАСЧЕТ ЗАКАТА В БРЕСТЕ (ШИРОТА 52.09, ДОЛГОТА 23.69, UTC+3)
+    function getBrestSunsetForDate(date) {
+      const lat = 52.0976;
+      const lon = 23.6877;
+      const tz = 3.0;
+      const startOfYear = new Date(date.getFullYear(), 0, 0);
+      const diff = date.getTime() - startOfYear.getTime();
+      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const gamma = (2 * Math.PI / 365) * (dayOfYear - 1);
+      const eqtime = 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) - 0.032077 * Math.sin(gamma)
+                     - 0.014615 * Math.cos(2 * gamma) - 0.040849 * Math.sin(2 * gamma));
+      const decl = 0.006918 - 0.399912 * Math.cos(gamma) + 0.070257 * Math.sin(gamma)
+                   - 0.006758 * Math.cos(2 * gamma) + 0.000907 * Math.sin(2 * gamma)
+                   - 0.002697 * Math.cos(3 * gamma) + 0.00148 * Math.sin(3 * gamma);
+      const zenith = 90.833 * (Math.PI / 180);
+      const latRad = lat * (Math.PI / 180);
+      const cosHa = (Math.cos(zenith) / (Math.cos(latRad) * Math.cos(decl))) - (Math.tan(latRad) * Math.tan(decl));
+      const haDeg = Math.acos(cosHa) * (180 / Math.PI);
+      const sunsetLocalMin = 720 + 4 * (0 - lon) - eqtime + 4 * haDeg + tz * 60 - 3;
+      const totalMin = Math.round(sunsetLocalMin);
+      const hours = Math.floor(totalMin / 60);
+      const minutes = totalMin % 60;
+      const arriveMin = totalMin - 15;
+      const arriveHours = Math.floor(arriveMin / 60);
+      const arriveMinutes = arriveMin % 60;
+      const goldenMin = totalMin - 60;
+      const goldenHours = Math.floor(goldenMin / 60);
+      const goldenMinutes = goldenMin % 60;
+      return {
+        totalMin,
+        sunset: String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0'),
+        arrive: String(arriveHours).padStart(2, '0') + ':' + String(arriveMinutes).padStart(2, '0'),
+        golden: String(goldenHours).padStart(2, '0') + ':' + String(goldenMinutes).padStart(2, '0')
+      };
+    }
+
+    const MONTHS_GENITIVE = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+    const DAYS_SHORT = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
+    function toggleWeekSchedule() {
+      const box = document.getElementById('week-table-box');
+      const chevron = document.getElementById('week-chevron');
+      if (box.style.display === 'none' || !box.style.display) {
+        box.style.display = 'block';
+        chevron.innerText = '▲';
+      } else {
+        box.style.display = 'none';
+        chevron.innerText = '▼';
+      }
+    }
+
+    function updateLamplighter() {
+      const now = new Date();
+      const currentCal = getBrestSunsetForDate(now);
+
+      const day = now.getDate();
+      const monthStr = MONTHS_GENITIVE[now.getMonth()];
+      document.getElementById('lantern-date-str').innerText = day + ' ' + monthStr;
+      document.getElementById('lantern-sunset-val').innerText = currentCal.sunset;
+      document.getElementById('lantern-arrive-pill').innerText = currentCal.arrive;
+      document.getElementById('lantern-golden-val').innerText = '~' + currentCal.golden;
+
+      const curMin = now.getHours() * 60 + now.getMinutes();
+      const diff = currentCal.totalMin - curMin;
+      const statusEl = document.getElementById('lantern-status');
+
+      if (diff > 60) {
+        const dh = Math.floor(diff / 60);
+        const dm = diff % 60;
+        statusEl.innerText = 'До выхода: ' + dh + ' ч. ' + dm + ' мин.';
+        statusEl.style.color = '#fef3c7';
+      } else if (diff > 30) {
+        statusEl.innerText = 'До выхода: ' + diff + ' мин.';
+        statusEl.style.color = '#fef3c7';
+      } else if (diff >= 0 && diff <= 30) {
+        statusEl.innerText = '🔥 Выдвигайтесь сейчас (осталось ' + diff + ' мин.)';
+        statusEl.style.color = '#fed7aa';
+      } else if (diff < 0 && diff >= -120) {
+        statusEl.innerText = '✨ Фонари зажжены! Ритуал на Советской';
+        statusEl.style.color = '#86efac';
+      } else {
+        statusEl.innerText = 'Фонари горят до рассвета';
+        statusEl.style.color = '#fef3c7';
+      }
+
+      // Генерация таблицы на следующие дни
+      const rowsEl = document.getElementById('week-rows');
+      if (rowsEl && rowsEl.children.length === 0) {
+        let html = '';
+        for (let i = 1; i <= 6; i++) {
+          const nextDate = new Date(now);
+          nextDate.setDate(now.getDate() + i);
+          const nextCal = getBrestSunsetForDate(nextDate);
+          const dLabel = nextDate.getDate() + ' ' + MONTHS_GENITIVE[nextDate.getMonth()] + ', ' + DAYS_SHORT[nextDate.getDay()];
+          html += '<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 6px 10px; border-top: 1px solid rgba(255,255,255,0.06); align-items: center;">' +
+                  '<div style="color: #fff;">' + dLabel + '</div>' +
+                  '<div style="text-align: center; color: #fde68a;">' + nextCal.sunset + '</div>' +
+                  '<div style="text-align: right;"><span style="display: inline-block; padding: 1px 6px; border-radius: 4px; background: rgba(245, 158, 11, 0.25); color: #fef08a; font-weight: 700; font-size: 11px;">' + nextCal.arrive + '</span></div>' +
+                  '</div>';
+        }
+        rowsEl.innerHTML = html;
+      }
+    }
+
+    updateLamplighter();
+    setInterval(updateLamplighter, 60000);
 
     // Подсветка активной вкладки таббара
     const navButtons = document.querySelectorAll('.nav-btn');
