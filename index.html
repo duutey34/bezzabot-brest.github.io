@@ -1059,7 +1059,7 @@
       background-color: #d1c7bc !important;
     }
 
-    /* ИНТЕРАКТИВНЫЙ КАЛЕНДАРЬ И ВСПЛЫВАЮЩИЕ ОКНА WERENT */
+    /* ИНТЕРАКТИВНЫЙ КАЛЕНДАРЬ И ВСПЛЫВАЮЩИЕ ОКНА WERENT (ТЕПЛАЯ ЯНТАРНО-КОФЕЙНАЯ ПАЛИТРА) */
     .werent-datepicker,
     .werent-monthpicker,
     .werent-guest-popup {
@@ -1075,11 +1075,88 @@
       font-family: 'Rubik', sans-serif !important;
     }
 
-    .werent-datepicker .werent-title {
+    /* ПОЛЯ ВВОДА ДАТ В ШАПКЕ КАЛЕНДАРЯ */
+    .werent-datepicker.werent-range .werent-inputs .werent-input {
+      background: #faf7f2 !important;
+      border: 1px solid #e9e5de !important;
+      border-radius: 12px !important;
+      color: #2c221b !important;
+    }
+
+    .werent-datepicker.werent-range .werent-inputs .werent-input input {
       color: #2c221b !important;
       font-weight: 700 !important;
     }
 
+    .werent-datepicker.werent-range .werent-inputs .werent-input:has(input:focus),
+    .werent-datepicker.werent-range .werent-inputs .werent-input.werent-active {
+      border: 1.5px solid #c86c12 !important;
+      outline: 3px solid rgba(200, 108, 18, 0.16) !important;
+      background: #ffffff !important;
+    }
+
+    .werent-datepicker.werent-range .werent-inputs .werent-mobile-label {
+      color: #6b645c !important;
+      font-weight: 600 !important;
+    }
+
+    .werent-datepicker.werent-range .werent-handle {
+      background: #d1c7bc !important;
+    }
+
+    /* ЗАГОЛОВОК И ДНИ НЕДЕЛИ */
+    .werent-datepicker .werent-title {
+      color: #2c221b !important;
+      font-weight: 700 !important;
+      font-size: 16px !important;
+    }
+
+    .werent-datepicker .werent-weakdays span,
+    .werent-datepicker .werent-weakdays {
+      color: #8a8176 !important;
+      font-weight: 600 !important;
+    }
+
+    .werent-datepicker button.werent-change-month.werent-open,
+    .werent-datepicker button.werent-change-month:hover {
+      background: #fbf3ea !important;
+      color: #c86c12 !important;
+    }
+
+    /* КНОПКИ ПЕРЕКЛЮЧЕНИЯ МЕСЯЦЕВ */
+    .werent-datepicker .werent-step-buttons button {
+      background: rgba(200, 108, 18, 0.12) !important;
+      border-radius: 10px !important;
+      border: none !important;
+    }
+
+    .werent-datepicker .werent-step-buttons button .werent-icon {
+      background-color: #c86c12 !important;
+    }
+
+    .werent-datepicker .werent-step-buttons button:hover,
+    .werent-datepicker .werent-step-buttons button:active {
+      background: #c86c12 !important;
+      box-shadow: 0 2px 8px rgba(200, 108, 18, 0.3) !important;
+    }
+
+    .werent-datepicker .werent-step-buttons button:hover .werent-icon,
+    .werent-datepicker .werent-step-buttons button:active .werent-icon {
+      background-color: #ffffff !important;
+    }
+
+    /* ДНИ КАЛЕНДАРЯ */
+    .werent-datepicker .werent-date {
+      color: #2c221b !important;
+      font-weight: 500 !important;
+    }
+
+    .werent-datepicker .werent-date.werent-disabled {
+      color: #c7c1b8 !important;
+      opacity: 0.45 !important;
+    }
+
+    /* ВЫБРАННЫЕ ДАТЫ: НАЧАЛО И КОНЕЦ (ЯНТАРНЫЙ) */
     .werent-datepicker .werent-date.werent-selected::after,
     .werent-datepicker .werent-date.werent-from::after,
     .werent-datepicker .werent-date.werent-to::after {
@@ -1094,13 +1171,24 @@
       font-weight: 700 !important;
     }
 
+    /* ПРОМЕЖУТОЧНЫЕ ДАТЫ ДИАПАЗОНА (МЯГКИЙ КРЕМОВО-ЯНТАРНЫЙ) */
     .werent-datepicker .werent-date:hover::after,
-    .werent-datepicker .werent-date.werent-preselect::after {
+    .werent-datepicker .werent-date.werent-preselect::after,
+    .werent-datepicker .werent-date.werent-in::after,
+    .werent-datepicker .werent-date.werent-range::after {
       background: #fbf3ea !important;
-      border-radius: 12px !important;
+      border-radius: 6px !important;
     }
 
-    .werent-datepicker .werent-date.werent-preselect:not(.werent-to):hover::before {
+    .werent-datepicker .werent-date.werent-preselect,
+    .werent-datepicker .werent-date.werent-in,
+    .werent-datepicker .werent-date.werent-range {
+      color: #2c221b !important;
+      font-weight: 600 !important;
+    }
+
+    .werent-datepicker .werent-date.werent-preselect:not(.werent-to):hover::before,
+    .werent-datepicker .werent-date:not(.werent-disabled):hover::before {
       border: 1.5px solid #c86c12 !important;
       border-radius: 12px !important;
     }
@@ -1110,21 +1198,86 @@
       font-weight: 700 !important;
     }
 
-    .werent-datepicker .werent-step-buttons button:hover {
+    /* НИЖНИЕ КНОПКИ ДАТПИКЕРА ("ПРИМЕНИТЬ" И "СБРОСИТЬ") */
+    .werent-datepicker .werent-buttons .werent-submit {
+      background: linear-gradient(135deg, #d97706 0%, #c86c12 100%) !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 12px !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(200, 108, 18, 0.32) !important;
+      transition: background 0.15s ease, transform 0.1s ease !important;
+    }
+
+    .werent-datepicker .werent-buttons .werent-submit:hover {
+      background: linear-gradient(135deg, #b45309 0%, #9a3412 100%) !important;
+    }
+
+    .werent-datepicker .werent-buttons .werent-submit:active {
+      transform: scale(0.98) !important;
+    }
+
+    .werent-datepicker .werent-buttons .werent-submit:disabled {
+      background: #e9e5de !important;
+      color: #8a8176 !important;
+      opacity: 0.8 !important;
+      box-shadow: none !important;
+    }
+
+    .werent-datepicker .werent-buttons .werent-clear {
+      background: transparent !important;
+      color: #6b645c !important;
+      border: 1px solid #e9e5de !important;
+      border-radius: 12px !important;
+      font-weight: 500 !important;
+    }
+
+    .werent-datepicker .werent-buttons .werent-clear:hover {
+      background: #fbf3ea !important;
+      color: #c86c12 !important;
+      border-color: #c86c12 !important;
+    }
+
+    /* ВЫБОР МЕСЯЦА (WERENT-MONTHPICKER) */
+    .werent-monthpicker {
+      background: rgba(251, 243, 234, 0.98) !important;
+      backdrop-filter: blur(10px) !important;
+      border-radius: 18px 18px 0 0 !important;
+      border-top: 1px solid #e9e5de !important;
+      box-shadow: 0 -8px 24px rgba(44, 34, 27, 0.1) !important;
+    }
+
+    .werent-monthpicker .werent-months button {
+      color: #2c221b !important;
+      font-weight: 500 !important;
+      border-radius: 10px !important;
+    }
+
+    .werent-monthpicker .werent-months button:hover {
+      background: #fbf3ea !important;
+      color: #c86c12 !important;
+    }
+
+    .werent-monthpicker .werent-months button:active,
+    .werent-monthpicker .werent-months button.werent-active {
       background: #c86c12 !important;
       color: #ffffff !important;
     }
 
     .werent-monthpicker button.werent-today {
-      background: #fbf3ea !important;
+      background: #ffffff !important;
       color: #c86c12 !important;
       border: 1px solid #c86c12 !important;
+      border-radius: 10px !important;
     }
 
-    .werent-monthpicker {
-      background: rgba(251, 243, 234, 0.98) !important;
-      border-radius: 14px !important;
-      border: 1px solid #e9e5de !important;
+    .werent-monthpicker button.werent-today:hover {
+      background: #fbf3ea !important;
+      color: #c86c12 !important;
+    }
+
+    .werent-monthpicker .werent-handle {
+      background: #d1c7bc !important;
     }
 
     .home-taxi-title {
@@ -1984,9 +2137,68 @@
                     box-shadow: 0 12px 36px rgba(44, 34, 27, 0.18) !important;
                     background: #ffffff !important;
                   }
+                  .werent-datepicker.werent-range .werent-inputs .werent-input {
+                    background: #faf7f2 !important;
+                    border: 1px solid #e9e5de !important;
+                    border-radius: 12px !important;
+                    color: #2c221b !important;
+                  }
+                  .werent-datepicker.werent-range .werent-inputs .werent-input input {
+                    color: #2c221b !important;
+                    font-weight: 700 !important;
+                  }
+                  .werent-datepicker.werent-range .werent-inputs .werent-input:has(input:focus),
+                  .werent-datepicker.werent-range .werent-inputs .werent-input.werent-active {
+                    border: 1.5px solid #c86c12 !important;
+                    outline: 3px solid rgba(200, 108, 18, 0.16) !important;
+                    background: #ffffff !important;
+                  }
+                  .werent-datepicker.werent-range .werent-inputs .werent-mobile-label {
+                    color: #6b645c !important;
+                    font-weight: 600 !important;
+                  }
+                  .werent-datepicker.werent-range .werent-handle {
+                    background: #d1c7bc !important;
+                  }
                   .werent-datepicker .werent-title {
                     color: #2c221b !important;
                     font-weight: 700 !important;
+                    font-size: 16px !important;
+                  }
+                  .werent-datepicker .werent-weakdays span,
+                  .werent-datepicker .werent-weakdays {
+                    color: #8a8176 !important;
+                    font-weight: 600 !important;
+                  }
+                  .werent-datepicker button.werent-change-month.werent-open,
+                  .werent-datepicker button.werent-change-month:hover {
+                    background: #fbf3ea !important;
+                    color: #c86c12 !important;
+                  }
+                  .werent-datepicker .werent-step-buttons button {
+                    background: rgba(200, 108, 18, 0.12) !important;
+                    border-radius: 10px !important;
+                    border: none !important;
+                  }
+                  .werent-datepicker .werent-step-buttons button .werent-icon {
+                    background-color: #c86c12 !important;
+                  }
+                  .werent-datepicker .werent-step-buttons button:hover,
+                  .werent-datepicker .werent-step-buttons button:active {
+                    background: #c86c12 !important;
+                    box-shadow: 0 2px 8px rgba(200, 108, 18, 0.3) !important;
+                  }
+                  .werent-datepicker .werent-step-buttons button:hover .werent-icon,
+                  .werent-datepicker .werent-step-buttons button:active .werent-icon {
+                    background-color: #ffffff !important;
+                  }
+                  .werent-datepicker .werent-date {
+                    color: #2c221b !important;
+                    font-weight: 500 !important;
+                  }
+                  .werent-datepicker .werent-date.werent-disabled {
+                    color: #c7c1b8 !important;
+                    opacity: 0.45 !important;
                   }
                   .werent-datepicker .werent-date.werent-selected::after,
                   .werent-datepicker .werent-date.werent-from::after,
@@ -2001,11 +2213,20 @@
                     font-weight: 700 !important;
                   }
                   .werent-datepicker .werent-date:hover::after,
-                  .werent-datepicker .werent-date.werent-preselect::after {
+                  .werent-datepicker .werent-date.werent-preselect::after,
+                  .werent-datepicker .werent-date.werent-in::after,
+                  .werent-datepicker .werent-date.werent-range::after {
                     background: #fbf3ea !important;
-                    border-radius: 12px !important;
+                    border-radius: 6px !important;
                   }
-                  .werent-datepicker .werent-date.werent-preselect:not(.werent-to):hover::before {
+                  .werent-datepicker .werent-date.werent-preselect,
+                  .werent-datepicker .werent-date.werent-in,
+                  .werent-datepicker .werent-date.werent-range {
+                    color: #2c221b !important;
+                    font-weight: 600 !important;
+                  }
+                  .werent-datepicker .werent-date.werent-preselect:not(.werent-to):hover::before,
+                  .werent-datepicker .werent-date:not(.werent-disabled):hover::before {
                     border: 1.5px solid #c86c12 !important;
                     border-radius: 12px !important;
                   }
@@ -2013,14 +2234,72 @@
                     color: #c86c12 !important;
                     font-weight: 700 !important;
                   }
-                  .werent-datepicker .werent-step-buttons button:hover {
+                  .werent-datepicker .werent-buttons .werent-submit {
+                    background: linear-gradient(135deg, #d97706 0%, #c86c12 100%) !important;
+                    color: #ffffff !important;
+                    border: none !important;
+                    border-radius: 12px !important;
+                    font-weight: 600 !important;
+                    box-shadow: 0 4px 14px rgba(200, 108, 18, 0.32) !important;
+                    transition: background 0.15s ease, transform 0.1s ease !important;
+                  }
+                  .werent-datepicker .werent-buttons .werent-submit:hover {
+                    background: linear-gradient(135deg, #b45309 0%, #9a3412 100%) !important;
+                  }
+                  .werent-datepicker .werent-buttons .werent-submit:active {
+                    transform: scale(0.98) !important;
+                  }
+                  .werent-datepicker .werent-buttons .werent-submit:disabled {
+                    background: #e9e5de !important;
+                    color: #8a8176 !important;
+                    opacity: 0.8 !important;
+                    box-shadow: none !important;
+                  }
+                  .werent-datepicker .werent-buttons .werent-clear {
+                    background: transparent !important;
+                    color: #6b645c !important;
+                    border: 1px solid #e9e5de !important;
+                    border-radius: 12px !important;
+                    font-weight: 500 !important;
+                  }
+                  .werent-datepicker .werent-buttons .werent-clear:hover {
+                    background: #fbf3ea !important;
+                    color: #c86c12 !important;
+                    border-color: #c86c12 !important;
+                  }
+                  .werent-monthpicker {
+                    background: rgba(251, 243, 234, 0.98) !important;
+                    backdrop-filter: blur(10px) !important;
+                    border-radius: 18px 18px 0 0 !important;
+                    border-top: 1px solid #e9e5de !important;
+                    box-shadow: 0 -8px 24px rgba(44, 34, 27, 0.1) !important;
+                  }
+                  .werent-monthpicker .werent-months button {
+                    color: #2c221b !important;
+                    font-weight: 500 !important;
+                    border-radius: 10px !important;
+                  }
+                  .werent-monthpicker .werent-months button:hover {
+                    background: #fbf3ea !important;
+                    color: #c86c12 !important;
+                  }
+                  .werent-monthpicker .werent-months button:active,
+                  .werent-monthpicker .werent-months button.werent-active {
                     background: #c86c12 !important;
                     color: #ffffff !important;
                   }
                   .werent-monthpicker button.werent-today {
-                    background: #fbf3ea !important;
+                    background: #ffffff !important;
                     color: #c86c12 !important;
                     border: 1px solid #c86c12 !important;
+                    border-radius: 10px !important;
+                  }
+                  .werent-monthpicker button.werent-today:hover {
+                    background: #fbf3ea !important;
+                    color: #c86c12 !important;
+                  }
+                  .werent-monthpicker .werent-handle {
+                    background: #d1c7bc !important;
                   }
                 `;
                 document.head.appendChild(style);
