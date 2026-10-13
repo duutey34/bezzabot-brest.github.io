@@ -48,13 +48,11 @@ export const WelcomeBanner: React.FC<WelcomeBannerProps> = ({ onCopyWifi, wifiCo
         </button>
 
         <a
-          href={APARTMENT_INFO.mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#taxi-home"
           className="py-2.5 px-2 rounded-xl text-xs font-semibold flex flex-col items-center justify-center gap-1 bg-[#fffdfa] text-[#2c221b] hover:bg-[#f5ede3] border border-[#e2d9cd] transition-all active:scale-95 shadow-sm"
         >
-          <MapPin className="w-4 h-4 text-[#c86c12]" />
-          <span className="truncate max-w-full">Маршрут</span>
+          <span className="text-sm leading-none">🚕</span>
+          <span className="truncate max-w-full">Такси домой</span>
         </a>
 
         <a

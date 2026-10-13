@@ -578,12 +578,29 @@
 
     /* СПЕЦИАЛЬНАЯ КНОПКА: ТАКСИ В АПАРТАМЕНТЫ (ДОМОЙ) */
     .home-taxi-box {
+      scroll-margin-top: 20px;
       background: linear-gradient(135deg, #fffdf2 0%, #fff9e6 100%);
       border: 2px solid #ffe066;
       border-radius: var(--radius);
       padding: 16px;
       margin: 16px 0;
       box-shadow: 0 4px 14px rgba(255, 204, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .home-taxi-box:target {
+      animation: targetPulse 1.6s ease;
+    }
+
+    @keyframes targetPulse {
+      0%, 100% {
+        box-shadow: 0 4px 14px rgba(255, 204, 0, 0.15);
+        transform: scale(1);
+      }
+      30% {
+        box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.45), 0 8px 24px rgba(255, 204, 0, 0.25);
+        transform: scale(1.02);
+      }
     }
 
     .home-taxi-title {
@@ -744,8 +761,8 @@
         <button class="welcome-btn welcome-btn-primary" onclick="copyWifi()">
           📶 Wi-Fi пароль
         </button>
-        <a href="https://maps.yandex.ru/?text=Брест,+ул.+Петра+Ивашутина,+6" target="_blank" class="welcome-btn">
-          📍 Маршрут
+        <a href="#taxi-home" class="welcome-btn">
+          🚕 Такси домой
         </a>
         <a href="#contacts" class="welcome-btn">
           📞 Связь
@@ -975,7 +992,7 @@
     </details>
 
     <!-- СПЕЦИАЛЬНЫЙ БЛОК: ТАКСИ В АПАРТАМЕНТЫ (ДОМОЙ) -->
-    <div class="home-taxi-box">
+    <div class="home-taxi-box" id="taxi-home">
       <div class="home-taxi-title">
         <span>🚕 Такси в апартаменты (Домой)</span>
       </div>

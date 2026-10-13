@@ -95,7 +95,7 @@ export const CityGuide: React.FC = () => {
       </div>
 
       {/* Специальный заметный блок: Такси в апартаменты (Домой) */}
-      <div className="bg-gradient-to-br from-[#fffdf2] to-[#fff9e6] border-2 border-[#ffe066] rounded-2xl p-4 mb-3.5 shadow-sm">
+      <div id="taxi-home" className="scroll-mt-6 bg-gradient-to-br from-[#fffdf2] to-[#fff9e6] border-2 border-[#ffe066] rounded-2xl p-4 mb-3.5 shadow-sm">
         <div className="flex items-center gap-2">
           <span className="text-lg">🚕</span>
           <span className="text-sm font-bold text-[#2c221b]">Такси в апартаменты (Домой)</span>
