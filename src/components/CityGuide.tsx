@@ -101,15 +101,15 @@ export const CityGuide: React.FC = () => {
           <span className="text-sm font-bold text-[#2c221b]">Такси в апартаменты (Домой)</span>
         </div>
         <p className="text-xs text-[#6b645c] mt-1 leading-relaxed">
-          Быстрый заказ машины в Яндекс Go прямо к подъезду (ул. Петра Ивашутина, 6). Точка назначения уже забита:
+          Быстрый заказ машины в Яндекс Go прямо ко 2-му подъезду: <b>Брест, ул. Петра Ивашутина, 6, 2 подъезд</b>. Точка назначения уже забита:
         </p>
         <a
-          href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&app=taxi"
+          href="https://3.redirect.appmetrica.yandex.com/route?end-lat=52.0622&end-lon=23.7483&text=%D0%91%D1%80%D0%B5%D1%81%D1%82%2C+%D1%83%D0%BB.+%D0%9F%D0%B5%D1%82%D1%80%D0%B0+%D0%98%D0%B2%D0%B0%D1%88%D1%83%D1%82%D0%B8%D0%BD%D0%B0%2C+6%2C+2+%D0%BF%D0%BE%D0%B4%D1%8A%D0%B5%D0%B7%D0%B4&app=taxi"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2.5 w-full py-2.5 px-4 bg-[#ffcc00] hover:bg-[#f5c300] active:scale-[0.98] border border-[#e6b800] rounded-xl text-[#1a1a1a] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all whitespace-nowrap"
+          className="mt-2.5 w-full py-2.5 px-4 bg-[#ffcc00] hover:bg-[#f5c300] active:scale-[0.98] border border-[#e6b800] rounded-xl text-[#1a1a1a] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all text-center leading-snug"
         >
-          <span>🚕 Открыть Яндекс Go домой</span>
+          <span>🚕 Открыть Яндекс Go (ул. Петра Ивашутина, 6, 2 подъезд)</span>
         </a>
       </div>
 
