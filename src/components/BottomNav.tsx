@@ -44,19 +44,24 @@ export const BottomNav: React.FC = () => {
   const scrollTo = (id: string) => {
     setActiveId(id);
     if (id === 'top') {
+      if (typeof (window as any).cleanupSpotlight === 'function') {
+        (window as any).cleanupSpotlight();
+      }
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
       return;
     }
+    if (typeof (window as any).navigateToAnchor === 'function') {
+      (window as any).navigateToAnchor(id);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
-      const offset = 20;
-      const top = element.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({
-        top,
+      element.scrollIntoView({
         behavior: 'smooth',
+        block: 'center',
       });
     }
   };

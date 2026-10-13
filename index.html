@@ -604,6 +604,94 @@
       }
     }
 
+    /* СЕРОВАТЫЙ ПОЛУПРОЗРАЧНЫЙ ФОН ПРИ ПЕРЕХОДЕ ПО ЯКОРЯМ */
+    #anchor-spotlight-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(36, 32, 28, 0.68);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 850;
+      opacity: 0;
+      pointer-events: none !important; /* Не блокирует тач и скролл */
+      will-change: opacity;
+    }
+
+    /* Подсвечиваемый целевой блок якоря поверх затемнения */
+    .anchor-highlighted-block {
+      position: relative !important;
+      z-index: 860 !important;
+      box-shadow: 0 0 0 4px #d97706, 0 16px 36px rgba(0, 0, 0, 0.38) !important;
+      transform: translateZ(0);
+      transition: box-shadow 0.35s ease, transform 0.35s ease !important;
+    }
+
+    .home-taxi-box.anchor-highlighted-block {
+      position: relative !important;
+      z-index: 860 !important;
+      box-shadow: 0 0 0 4px #ffcc00, 0 0 24px rgba(255, 204, 0, 0.45), 0 20px 42px rgba(0, 0, 0, 0.42) !important;
+      transform: translateZ(0);
+    }
+
+    .section-title.anchor-highlighted-block {
+      background: var(--card-bg, #ffffff);
+      padding: 12px 16px;
+      border-radius: 14px;
+      margin-left: -6px;
+      margin-right: -6px;
+      box-shadow: 0 0 0 4px #d97706, 0 16px 36px rgba(0, 0, 0, 0.38) !important;
+    }
+
+    /* БЛОК СЕКЦИИ ПРИ ЯКОРНОМ ПЕРЕХОДЕ */
+    .anchor-section-block {
+      scroll-margin-top: 10px;
+    }
+
+    .anchor-section-block.anchor-highlighted-block {
+      position: relative !important;
+      z-index: 860 !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    .anchor-section-block.anchor-highlighted-block .section-title {
+      position: relative;
+      z-index: 861;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+    }
+
+    /* БЛОК КОНТАКТОВ ПРИ ЯКОРНОМ ПЕРЕХОДЕ */
+    .contacts-block {
+      scroll-margin-top: 10px;
+    }
+
+    .contacts-block.anchor-highlighted-block {
+      position: relative !important;
+      z-index: 860 !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    .contacts-block.anchor-highlighted-block .section-title {
+      position: relative;
+      z-index: 861;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+    }
+
+    .contacts-block.anchor-highlighted-block .card {
+      position: relative;
+      z-index: 861;
+      box-shadow: 0 0 0 4px #d97706, 0 0 24px rgba(217, 119, 6, 0.35), 0 20px 42px rgba(0, 0, 0, 0.45) !important;
+      animation: targetPulse 1.2s ease-out 1;
+    }
+
     .home-taxi-title {
       font-size: 15px;
       font-weight: 700;
@@ -734,6 +822,9 @@
   </style>
 </head>
 <body>
+
+  <!-- ЗАТЕМНЯЮЩИЙ СЕРО-КОФЕЙНЫЙ ОВЕРЛЕЙ ПРИ ПЕРЕХОДЕ ПО ЯКОРЯМ -->
+  <div id="anchor-spotlight-backdrop" aria-hidden="true"></div>
 
   <!-- ГЛАВНЫЙ ЭКРАН 100DVH ДО МЕНЮ -->
   <section class="hero" id="top">
@@ -940,57 +1031,59 @@
 
 
     <!-- ТЕХНИКА И SMART TV -->
-    <h2 class="section-title" id="tech">🍳 Бытовая техника & TV</h2>
+    <div id="tech" class="anchor-section-block">
+      <h2 class="section-title" style="margin-top: 0; margin-bottom: 8px;">🍳 Бытовая техника & TV</h2>
 
-    <details>
-      <summary>
-        <span>📺 Smart TV и приложения</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </summary>
-      <div class="acc-content">
-        Телевизор оснащен атмосферной подсветкой. Для вас настроены:
-        <ul style="padding-left: 18px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-          <li><b>OTT Player:</b> эфирные телеканалы, фильмы и спортивные трансляции.</li>
-          <li><b>NUM / Кинопоиск:</b> огромная библиотека фильмов и новинок в HD.</li>
-          <li><b>YouTube:</b> видео и музыка (при любом подвисании просто перезапустите приложение).</li>
-        </ul>
-      </div>
-    </details>
+      <details>
+        <summary>
+          <span>📺 Smart TV и приложения</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </summary>
+        <div class="acc-content">
+          Телевизор оснащен атмосферной подсветкой. Для вас настроены:
+          <ul style="padding-left: 18px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
+            <li><b>OTT Player:</b> эфирные телеканалы, фильмы и спортивные трансляции.</li>
+            <li><b>NUM / Кинопоиск:</b> огромная библиотека фильмов и новинок в HD.</li>
+            <li><b>YouTube:</b> видео и музыка (при любом подвисании просто перезапустите приложение).</li>
+          </ul>
+        </div>
+      </details>
 
-    <details>
-      <summary>
-        <span>🍳 Варочная панель, духовка и СВЧ</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </summary>
-      <div class="acc-content">
-        1. Удерживайте кнопку включения 2 секунды.<br>
-        2. <b>Если горит символ «L» (защита от детей):</b> зажмите кнопку с иконкой замка 🔒 на 3 секунды до звукового сигнала — плита разблокируется.<br>
-        3. На кухне есть СВЧ-печь, духовой шкаф, чайник, посуда, а также чай, кофе, сахар, соль и масло.
-      </div>
-    </details>
+      <details>
+        <summary>
+          <span>🍳 Варочная панель, духовка и СВЧ</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </summary>
+        <div class="acc-content">
+          1. Удерживайте кнопку включения 2 секунды.<br>
+          2. <b>Если горит символ «L» (защита от детей):</b> зажмите кнопку с иконкой замка 🔒 на 3 секунды до звукового сигнала — плита разблокируется.<br>
+          3. На кухне есть СВЧ-печь, духовой шкаф, чайник, посуда, а также чай, кофе, сахар, соль и масло.
+        </div>
+      </details>
 
-    <details>
-      <summary>
-        <span>🧺 Ванная комната и стиральная машина</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </summary>
-      <div class="acc-content">
-        • <b>Стиральная машина:</b> рекомендуем удобный режим «Быстро 30 мин».<br>
-        • В ванной есть тропический душ, полотенцесушитель, фен и свежие полотенца.<br>
-        • Санузел комфортный раздельный. Утюг и гладильная доска — в спальне/прихожей.
-      </div>
-    </details>
+      <details>
+        <summary>
+          <span>🧺 Ванная комната и стиральная машина</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </summary>
+        <div class="acc-content">
+          • <b>Стиральная машина:</b> рекомендуем удобный режим «Быстро 30 мин».<br>
+          • В ванной есть тропический душ, полотенцесушитель, фен и свежие полотенца.<br>
+          • Санузел комфортный раздельный. Утюг и гладильная доска — в спальне/прихожей.
+        </div>
+      </details>
 
-    <details>
-      <summary>
-        <span>🌿 Балкон и кондиционер</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </summary>
-      <div class="acc-content">
-        • <b>Балкон (9 этаж):</b> панорамный вид на закатный Брест, столик из натурального слэба и складная сушилка для белья.<br>
-        • <b>Кондиционер:</b> значок ❄️ — охлаждение, значок ☀️ — обогрев. Комфортная температура: 22–23°C.
-      </div>
-    </details>
+      <details>
+        <summary>
+          <span>🌿 Балкон и кондиционер</span>
+          <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </summary>
+        <div class="acc-content">
+          • <b>Балкон (9 этаж):</b> панорамный вид на закатный Брест, столик из натурального слэба и складная сушилка для белья.<br>
+          • <b>Кондиционер:</b> значок ❄️ — охлаждение, значок ☀️ — обогрев. Комфортная температура: 22–23°C.
+        </div>
+      </details>
+    </div>
 
     <!-- СПЕЦИАЛЬНЫЙ БЛОК: ТАКСИ В АПАРТАМЕНТЫ (ДОМОЙ) -->
     <div class="home-taxi-box" id="taxi-home">
@@ -1229,28 +1322,30 @@
     </details>
 
     <!-- КОНТАКТЫ -->
-    <h2 class="section-title" id="contacts">💬 Мы всегда на связи</h2>
-    <div class="card">
-      <div style="font-size: 17px; font-weight: 700; color: var(--wood-dark); margin-bottom: 4px;">Вадим и Наталья</div>
-      <p style="font-size: 13px; color: var(--text-muted);">
-        С радостью поможем по любым бытовым вопросам, подскажем дорогу и сделаем ваш отдых комфортным:
-      </p>
+    <div id="contacts" class="contacts-block">
+      <h2 class="section-title" style="margin-top: 0; margin-bottom: 8px;">💬 Мы всегда на связи</h2>
+      <div class="card" style="margin-top: 0;">
+        <div style="font-size: 17px; font-weight: 700; color: var(--wood-dark); margin-bottom: 4px;">Вадим и Наталья</div>
+        <p style="font-size: 13px; color: var(--text-muted);">
+          С радостью поможем по любым бытовым вопросам, подскажем дорогу и сделаем ваш отдых комфортным:
+        </p>
 
-      <div class="host-phones">
-        <a href="tel:+375297977070" class="phone-btn">
-          <span>📞 Вадим (+375 29 797-70-70)</span>
-          <span style="font-size: 12px; color: var(--accent);">Позвонить</span>
-        </a>
-        <a href="tel:+375297221551" class="phone-btn">
-          <span>📞 Наталья (+375 29 722-15-51)</span>
-          <span style="font-size: 12px; color: var(--accent);">Позвонить</span>
-        </a>
-      </div>
+        <div class="host-phones">
+          <a href="tel:+375297977070" class="phone-btn">
+            <span>📞 Вадим (+375 29 797-70-70)</span>
+            <span style="font-size: 12px; color: var(--accent);">Позвонить</span>
+          </a>
+          <a href="tel:+375297221551" class="phone-btn">
+            <span>📞 Наталья (+375 29 722-15-51)</span>
+            <span style="font-size: 12px; color: var(--accent);">Позвонить</span>
+          </a>
+        </div>
 
-      <div class="messengers-grid">
-        <a href="https://t.me/duutey" class="btn-msg btn-tg" target="_blank">Telegram (@duutey)</a>
-        <a href="https://wa.me/375297977070" class="btn-msg btn-wa" target="_blank">WhatsApp</a>
-        <a href="viber://chat?number=%2B375297977070" class="btn-msg btn-vb">Viber</a>
+        <div class="messengers-grid">
+          <a href="https://t.me/duutey" class="btn-msg btn-tg" target="_blank">Telegram (@duutey)</a>
+          <a href="https://wa.me/375297977070" class="btn-msg btn-wa" target="_blank">WhatsApp</a>
+          <a href="viber://chat?number=%2B375297977070" class="btn-msg btn-vb">Viber</a>
+        </div>
       </div>
     </div>
 
@@ -1435,36 +1530,212 @@
         btn.classList.add('active');
         if (btn.getAttribute('href') === '#top') {
           e.preventDefault();
+          cleanupSpotlight();
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
     });
 
-    // Плавный скролл к блоку вызова такси строго по центру экрана
+    // === ЯКОРНЫЕ ССЫЛКИ: ЦЕНТРИРОВАНИЕ БЛОКА, ЗАТЕМНЕНИЕ ОКРУЖЕНИЯ И ОСВЕТЛЕНИЕ ПРИ СКРОЛЛЕ ===
+    const spotlightBackdrop = document.getElementById('anchor-spotlight-backdrop');
+    let activeSpotlightElement = null;
+    let anchorBaselineY = null;
+    let isAnchorNavigating = false;
+    let anchorScrollTimer = null;
+    let anchorStartTime = 0;
+    const FADE_SCROLL_DISTANCE = 180; // Дистанция скролла (в px), за которую область плавно светлеет до 100%
+
+    function cleanupSpotlight() {
+      if (spotlightBackdrop) {
+        spotlightBackdrop.style.transition = 'opacity 0.25s ease-out';
+        spotlightBackdrop.style.opacity = '0';
+        spotlightBackdrop.classList.remove('active');
+      }
+      if (activeSpotlightElement) {
+        activeSpotlightElement.classList.remove('anchor-highlighted-block');
+        activeSpotlightElement = null;
+      }
+      anchorBaselineY = null;
+      isAnchorNavigating = false;
+      if (anchorScrollTimer) {
+        clearTimeout(anchorScrollTimer);
+        anchorScrollTimer = null;
+      }
+    }
+
+    function finishAnchorScroll() {
+      if (!isAnchorNavigating) return;
+      isAnchorNavigating = false;
+      if (anchorScrollTimer) {
+        clearTimeout(anchorScrollTimer);
+        anchorScrollTimer = null;
+      }
+      // Фиксируем фактическую точку остановки по центру экрана как baseline
+      anchorBaselineY = window.pageYOffset || document.documentElement.scrollTop;
+      if (spotlightBackdrop) {
+        // Убираем transition для моментального отклика на ручной скролл без задержки
+        spotlightBackdrop.style.transition = 'none';
+        spotlightBackdrop.style.opacity = '1';
+      }
+    }
+
+    // Слушатель скролла: работает ТОЛЬКО когда активен переход по якорной ссылке!
+    window.addEventListener('scroll', () => {
+      // Если якорный переход не активен — обычный скролл страницы никак не затрагивается
+      if (anchorBaselineY === null && !isAnchorNavigating) return;
+
+      const currentY = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Пока идёт автоматический smooth-scroll к центру блока — область стабильно сероватая
+      if (isAnchorNavigating) {
+        if (spotlightBackdrop) {
+          spotlightBackdrop.style.opacity = '1';
+        }
+        if (anchorBaselineY !== null && Math.abs(currentY - anchorBaselineY) <= 3) {
+          finishAnchorScroll();
+        }
+        return;
+      }
+
+      // Пользователь сдвигает экран вверх или вниз — рассчитываем смещение и делаем область светлее
+      const diff = Math.abs(currentY - anchorBaselineY);
+      const remainingRatio = Math.max(0, 1 - (diff / FADE_SCROLL_DISTANCE));
+
+      if (spotlightBackdrop) {
+        spotlightBackdrop.style.opacity = remainingRatio.toFixed(3);
+      }
+
+      // Как только область полностью посветлела — снимаем подсветку
+      if (remainingRatio <= 0) {
+        cleanupSpotlight();
+      }
+    }, { passive: true });
+
+    // Событие завершения скролла в браузерах с поддержкой scrollend
+    window.addEventListener('scrollend', () => {
+      if (isAnchorNavigating) {
+        finishAnchorScroll();
+      }
+    }, { passive: true });
+
+    // Прерывание автоматической анимации при намеренном ручном движении (пальцем или колесиком)
+    function onManualScrollGesture() {
+      if (isAnchorNavigating && (Date.now() - anchorStartTime > 140)) {
+        finishAnchorScroll();
+      }
+    }
+    window.addEventListener('touchmove', onManualScrollGesture, { passive: true });
+    window.addEventListener('wheel', onManualScrollGesture, { passive: true });
+
+    // Снятие затемнения при клике вне подсвеченного блока
+    document.addEventListener('pointerdown', (e) => {
+      if (!activeSpotlightElement) return;
+      if (!activeSpotlightElement.contains(e.target) && !e.target.closest('.bottom-nav') && !e.target.closest('.welcome-actions')) {
+        cleanupSpotlight();
+      }
+    });
+
+    // Функция быстрого перехода к блоку такси домой
     function scrollToTaxiHome(e) {
+      navigateToAnchor('taxi-home', e);
+    }
+
+    // Универсальный переход по якорю: блок строго по середине экрана + сероватое окружение
+    function navigateToAnchor(targetId, e) {
       if (e && e.preventDefault) {
         e.preventDefault();
       }
-      const target = document.getElementById('taxi-home');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        try {
-          history.pushState(null, '', '#taxi-home');
-        } catch (_) {}
+
+      if (!targetId || targetId === 'top') {
+        cleanupSpotlight();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      // Снимаем подсветку с предыдущего элемента
+      if (activeSpotlightElement && activeSpotlightElement !== target) {
+        activeSpotlightElement.classList.remove('anchor-highlighted-block');
+      }
+
+      activeSpotlightElement = target;
+      target.classList.add('anchor-highlighted-block');
+
+      // Для блока такси запускаем пульсирующий акцент
+      if (targetId === 'taxi-home' || target.classList.contains('home-taxi-box')) {
         target.classList.remove('highlight-focus');
         void target.offsetWidth;
         target.classList.add('highlight-focus');
       }
+
+      // Показываем сероватый оверлей
+      if (spotlightBackdrop) {
+        spotlightBackdrop.classList.add('active');
+        spotlightBackdrop.style.transition = 'opacity 0.28s ease-out';
+        spotlightBackdrop.style.opacity = '1';
+      }
+
+      // Математически точное центрирование блока ровно по середине экрана с учетом нижнего таббара
+      const rect = target.getBoundingClientRect();
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const bottomNavHeight = 60;
+      const visibleHeight = window.innerHeight - bottomNavHeight;
+      const targetHeight = target.offsetHeight;
+
+      let targetScrollY = currentScroll + rect.top + (targetHeight / 2) - (visibleHeight / 2);
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      targetScrollY = Math.max(0, Math.min(maxScroll, Math.round(targetScrollY)));
+
+      anchorStartTime = Date.now();
+      isAnchorNavigating = true;
+      anchorBaselineY = targetScrollY;
+
+      // Плавная прокрутка ровно в центр
+      window.scrollTo({
+        top: targetScrollY,
+        behavior: 'smooth'
+      });
+
+      try {
+        history.pushState(null, '', '#' + targetId);
+      } catch (_) {}
+
+      if (Math.abs(currentScroll - targetScrollY) <= 4) {
+        finishAnchorScroll();
+      } else {
+        if (anchorScrollTimer) clearTimeout(anchorScrollTimer);
+        anchorScrollTimer = setTimeout(finishAnchorScroll, 650);
+      }
     }
 
-    document.querySelectorAll('a[href="#taxi-home"]').forEach(link => {
-      link.addEventListener('click', scrollToTaxiHome);
+    window.navigateToAnchor = navigateToAnchor;
+    window.cleanupSpotlight = cleanupSpotlight;
+    window.scrollToTaxiHome = scrollToTaxiHome;
+
+    // Привязываем ко всем якорным ссылкам страницы
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        const targetId = href.slice(1);
+        if (targetId === 'top') {
+          cleanupSpotlight();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        navigateToAnchor(targetId, e);
+      });
     });
 
-    if (window.location.hash === '#taxi-home') {
-      window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(scrollToTaxiHome, 300);
-      });
+    if (window.location.hash) {
+      const hashId = window.location.hash.slice(1);
+      if (hashId && hashId !== 'top') {
+        window.addEventListener('DOMContentLoaded', () => {
+          setTimeout(() => navigateToAnchor(hashId), 350);
+        });
+      }
     }
   </script>
 </body>
