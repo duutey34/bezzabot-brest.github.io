@@ -767,16 +767,234 @@
       border-radius: 8px;
     }
 
+    /* КАСТОМИЗАЦИЯ И ЦВЕТОВОЙ ПРОФИЛЬ ВИДЖЕТА БРОНИРОВАНИЯ WERENT.ME */
     .werent-wrapper {
       width: 100%;
       min-height: 200px;
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
       margin-top: 14px;
+      border: 1px solid var(--border);
+      padding: 6px;
+      overflow-x: hidden;
+      box-shadow: 0 2px 10px rgba(44, 34, 27, 0.03);
     }
 
     .werent-wrapper .werent-booking-module {
       width: 100% !important;
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    /* ЦВЕТОВЫЕ ПЕРЕМЕННЫЕ ВИДЖЕТА: КОФЕЙНО-ДРЕВЕСНЫЕ И ТЕПЛЫЕ ЯНТАРНЫЕ ТОНА */
+    :root,
+    body,
+    .werent-wrapper,
+    .werent-booking-module,
+    .werent-datepicker,
+    .werent-monthpicker {
+      --primary: #c86c12 !important;
+      --primary-hover: #b45309 !important;
+      --black-1: #2c221b !important;
+      --black-2: #1f1b18 !important;
+      --black-3: #3e2e23 !important;
+      --gray-1: #faf7f2 !important;
+      --gray-2: #8a8176 !important;
+      --gray-3: #e9e5de !important;
+      --gray-4: #6b645c !important;
+      --gray-5: #3e2e23 !important;
+      --gray-6: #6b645c !important;
+      --gray-7: #544b41 !important;
+      --gray-8: #f6f3ee !important;
+      --border-main: #e9e5de !important;
+    }
+
+    /* ШРИФТ И СТИЛИЗАЦИЯ ТЕКСТА */
+    .werent-booking-module,
+    .werent-booking-module *,
+    .werent-datepicker,
+    .werent-datepicker *,
+    .werent-monthpicker,
+    .werent-monthpicker * {
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    /* ОСНОВНЫЕ КНОПКИ БРОНИРОВАНИЯ (ЯНТАРНЫЙ ГРАДИЕНТ) */
+    .werent-booking-module .werent-btn-primary,
+    .werent-booking-module .werent-btn,
+    .werent-booking-module .werent-apartment .werent-apartment-btn,
+    .werent-booking-module .werent-profile-host__calendar-btn-load-more,
+    .werent-booking-module .werent-details-booking-info__btn,
+    .werent-booking-module .werent-details-confirm-send:not(:disabled) {
+      background: linear-gradient(135deg, #d97706 0%, #c86c12 100%) !important;
+      color: #ffffff !important;
+      border-radius: 12px !important;
+      border: none !important;
+      font-weight: 600 !important;
+      box-shadow: 0 3px 10px rgba(200, 108, 18, 0.28) !important;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
+    }
+
+    .werent-booking-module .werent-btn-primary:hover,
+    .werent-booking-module .werent-btn:hover,
+    .werent-booking-module .werent-apartment .werent-apartment-btn:hover,
+    .werent-booking-module .werent-profile-host__calendar-btn-load-more:hover,
+    .werent-booking-module .werent-details-booking-info__btn:hover {
+      background: linear-gradient(135deg, #b45309 0%, #9a3412 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(200, 108, 18, 0.38) !important;
+    }
+
+    /* ВТОРОСТЕПЕННЫЕ И АКЦЕНТНЫЕ КНОПКИ (МЯГКИЙ КРЕМОВО-ЯНТАРНЫЙ ВМЕСТО СИНЕГО) */
+    .werent-booking-module .werent-btn-visible-primary,
+    .werent-booking-module .werent-profile-host__description-share-item:hover,
+    .werent-booking-module .werent-profile-host__contacts-link:hover,
+    .werent-booking-module .werent-profile-host__description-share-item:active,
+    .werent-booking-module .werent-profile-host__contacts-link:active,
+    .werent-booking-module .werent-popup-copy__item,
+    .werent-booking-module .werent-guest-popup .werent-content button {
+      background-color: #fbf3ea !important;
+      color: #c86c12 !important;
+      border: 1px solid rgba(200, 108, 18, 0.22) !important;
+      border-radius: 10px !important;
+    }
+
+    .werent-booking-module .werent-btn-visible-primary:hover,
+    .werent-booking-module .werent-guest-popup .werent-content button:hover {
+      background-color: #c86c12 !important;
+      color: #ffffff !important;
+    }
+
+    /* КАРТОЧКИ И БЛОКИ ВНУТРИ ВИДЖЕТА */
+    .werent-booking-module .werent-profile-host,
+    .werent-booking-module .werent-profile-page {
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    .werent-booking-module .werent-profile-host__block,
+    .werent-booking-module .werent-apartment {
+      border-radius: 14px !important;
+      border: 1px solid #e9e5de !important;
+      background-color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(44, 34, 27, 0.04) !important;
+    }
+
+    .werent-booking-module .werent-profile-host__rating-toggle span.werent-active {
+      background-color: #c86c12 !important;
+      color: #ffffff !important;
+    }
+
+    .werent-booking-module .werent-profile-host__reviews,
+    .werent-booking-module .werent-profile-host__description-share:hover .werent-profile-host__description-share-btn {
+      color: #c86c12 !important;
+    }
+
+    .werent-booking-module .werent-profile-host__reviews span,
+    .werent-booking-module .werent-profile-host__service span,
+    .werent-booking-module .werent-profile-host__popular-icon {
+      background-color: #c86c12 !important;
+    }
+
+    /* ПОЛЯ ВЫБОРА ДАТ И ГОСТЕЙ */
+    .werent-booking-module .werent-profile-host .werent-date-select {
+      background: #faf7f2 !important;
+      border: 1px solid #e9e5de !important;
+      border-radius: 12px !important;
+    }
+
+    .werent-booking-module .werent-profile-host .werent-date-select.werent-active,
+    .werent-booking-module .werent-date-select.werent-active {
+      background: #fbf3ea !important;
+      border-color: #c86c12 !important;
+      color: #2c221b !important;
+    }
+
+    .werent-booking-module .werent-profile-host .werent-guests:active,
+    .werent-booking-module .werent-profile-host .werent-guests.werent-open {
+      background: #fbf3ea !important;
+      border-color: #c86c12 !important;
+    }
+
+    /* ТОЧКИ ПАГИНАЦИИ И ИНДИКАТОРЫ */
+    .werent-booking-module .werent-apartment-pagination span.werent-active {
+      background-color: #c86c12 !important;
+    }
+
+    .werent-booking-module .werent-apartment-condition--nigth,
+    .werent-booking-module .werent-apartment-title,
+    .werent-booking-module .werent-details-title {
+      color: #2c221b !important;
+    }
+
+    .werent-booking-module .werent-status-current {
+      background-color: #c86c12 !important;
+      color: #ffffff !important;
+    }
+
+    .werent-booking-module .werent-details-back-button {
+      color: #c86c12 !important;
+    }
+
+    /* ИНТЕРАКТИВНЫЙ КАЛЕНДАРЬ И ВСПЛЫВАЮЩИЕ ОКНА WERENT */
+    .werent-datepicker,
+    .werent-monthpicker,
+    .werent-guest-popup {
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      z-index: 99999 !important;
+    }
+
+    .werent-datepicker .werent-datepicker-content {
+      border-radius: 16px !important;
+      border: 1px solid #e9e5de !important;
+      box-shadow: 0 10px 32px rgba(44, 34, 27, 0.16) !important;
+      background: #ffffff !important;
+    }
+
+    .werent-datepicker .werent-date.werent-selected::after,
+    .werent-datepicker .werent-date.werent-from::after,
+    .werent-datepicker .werent-date.werent-to::after {
+      background: #c86c12 !important;
+      border-radius: 12px !important;
+    }
+
+    .werent-datepicker .werent-date.werent-selected,
+    .werent-datepicker .werent-date.werent-from,
+    .werent-datepicker .werent-date.werent-to {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    .werent-datepicker .werent-date:hover::after,
+    .werent-datepicker .werent-date.werent-preselect::after {
+      background: #fbf3ea !important;
+      border-radius: 12px !important;
+    }
+
+    .werent-datepicker .werent-date.werent-preselect:not(.werent-to):hover::before {
+      border: 1.5px solid #c86c12 !important;
+      border-radius: 12px !important;
+    }
+
+    .werent-datepicker .werent-date.werent-today:not(.werent-selected):not(.werent-disabled) {
+      color: #c86c12 !important;
+      font-weight: 700 !important;
+    }
+
+    .werent-datepicker .werent-step-buttons button:hover {
+      background: #c86c12 !important;
+      color: #ffffff !important;
+    }
+
+    .werent-monthpicker button.werent-today {
+      background: #fbf3ea !important;
+      color: #c86c12 !important;
+      border: 1px solid #c86c12 !important;
+    }
+
+    .werent-monthpicker {
+      background: rgba(251, 243, 234, 0.98) !important;
+      border-radius: 14px !important;
+      border: 1px solid #e9e5de !important;
     }
 
     .home-taxi-title {
@@ -1433,7 +1651,133 @@
           <script src="https://cdn.werent.me/widget/app.js"></script>
           <script>
             (function() {
+              function injectWerentThemeOverrides() {
+                if (document.getElementById('werent-theme-override-tag')) return;
+                const style = document.createElement('style');
+                style.id = 'werent-theme-override-tag';
+                style.textContent = `
+                  :root, body, .werent-wrapper, .werent-booking-module, .werent-datepicker, .werent-monthpicker {
+                    --primary: #c86c12 !important;
+                    --primary-hover: #b45309 !important;
+                    --black-1: #2c221b !important;
+                    --black-2: #1f1b18 !important;
+                    --black-3: #3e2e23 !important;
+                    --gray-1: #faf7f2 !important;
+                    --gray-2: #8a8176 !important;
+                    --gray-3: #e9e5de !important;
+                    --gray-4: #6b645c !important;
+                    --gray-5: #3e2e23 !important;
+                    --border-main: #e9e5de !important;
+                  }
+                  .werent-booking-module, .werent-booking-module *,
+                  .werent-datepicker, .werent-datepicker *,
+                  .werent-monthpicker, .werent-monthpicker * {
+                    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif !important;
+                  }
+                  .werent-booking-module .werent-btn-primary,
+                  .werent-booking-module .werent-btn,
+                  .werent-booking-module .werent-apartment .werent-apartment-btn,
+                  .werent-booking-module .werent-profile-host__calendar-btn-load-more,
+                  .werent-booking-module .werent-details-booking-info__btn,
+                  .werent-booking-module .werent-details-confirm-send:not(:disabled) {
+                    background: linear-gradient(135deg, #d97706 0%, #c86c12 100%) !important;
+                    color: #ffffff !important;
+                    border: none !important;
+                    border-radius: 12px !important;
+                    font-weight: 600 !important;
+                    box-shadow: 0 3px 10px rgba(200, 108, 18, 0.28) !important;
+                  }
+                  .werent-booking-module .werent-btn-primary:hover,
+                  .werent-booking-module .werent-btn:hover,
+                  .werent-booking-module .werent-apartment .werent-apartment-btn:hover,
+                  .werent-booking-module .werent-details-booking-info__btn:hover {
+                    background: linear-gradient(135deg, #b45309 0%, #9a3412 100%) !important;
+                    color: #ffffff !important;
+                  }
+                  .werent-booking-module .werent-btn-visible-primary,
+                  .werent-booking-module .werent-popup-copy__item,
+                  .werent-booking-module .werent-guest-popup .werent-content button {
+                    background-color: #fbf3ea !important;
+                    color: #c86c12 !important;
+                    border: 1px solid rgba(200, 108, 18, 0.2) !important;
+                    border-radius: 10px !important;
+                  }
+                  .werent-booking-module .werent-btn-visible-primary:hover,
+                  .werent-booking-module .werent-guest-popup .werent-content button:hover {
+                    background-color: #c86c12 !important;
+                    color: #ffffff !important;
+                  }
+                  .werent-booking-module .werent-profile-host__rating-toggle span.werent-active,
+                  .werent-booking-module .werent-apartment-pagination span.werent-active,
+                  .werent-booking-module .werent-profile-host__reviews span,
+                  .werent-booking-module .werent-profile-host__service span,
+                  .werent-booking-module .werent-profile-host__popular-icon,
+                  .werent-booking-module .werent-status-current {
+                    background-color: #c86c12 !important;
+                    color: #ffffff !important;
+                  }
+                  .werent-booking-module .werent-profile-host__reviews,
+                  .werent-booking-module .werent-details-back-button {
+                    color: #c86c12 !important;
+                  }
+                  .werent-booking-module .werent-profile-host .werent-date-select.werent-active,
+                  .werent-booking-module .werent-date-select.werent-active {
+                    background: #fbf3ea !important;
+                    border-color: #c86c12 !important;
+                    color: #2c221b !important;
+                  }
+                  .werent-datepicker .werent-datepicker-content {
+                    border-radius: 16px !important;
+                    border: 1px solid #e9e5de !important;
+                    box-shadow: 0 10px 32px rgba(44, 34, 27, 0.16) !important;
+                  }
+                  .werent-datepicker .werent-date.werent-selected::after,
+                  .werent-datepicker .werent-date.werent-from::after,
+                  .werent-datepicker .werent-date.werent-to::after {
+                    background: #c86c12 !important;
+                    border-radius: 12px !important;
+                  }
+                  .werent-datepicker .werent-date.werent-selected,
+                  .werent-datepicker .werent-date.werent-from,
+                  .werent-datepicker .werent-date.werent-to {
+                    color: #ffffff !important;
+                    font-weight: 700 !important;
+                  }
+                  .werent-datepicker .werent-date:hover::after,
+                  .werent-datepicker .werent-date.werent-preselect::after {
+                    background: #fbf3ea !important;
+                    border-radius: 12px !important;
+                  }
+                  .werent-datepicker .werent-date.werent-preselect:not(.werent-to):hover::before {
+                    border: 1.5px solid #c86c12 !important;
+                    border-radius: 12px !important;
+                  }
+                  .werent-datepicker .werent-date.werent-today:not(.werent-selected):not(.werent-disabled) {
+                    color: #c86c12 !important;
+                    font-weight: 700 !important;
+                  }
+                  .werent-datepicker .werent-step-buttons button:hover {
+                    background: #c86c12 !important;
+                    color: #ffffff !important;
+                  }
+                  .werent-monthpicker button.werent-today {
+                    background: #fbf3ea !important;
+                    color: #c86c12 !important;
+                    border: 1px solid #c86c12 !important;
+                  }
+                `;
+                document.head.appendChild(style);
+
+                const observer = new MutationObserver(() => {
+                  if (document.head.lastElementChild !== style) {
+                    document.head.appendChild(style);
+                  }
+                });
+                observer.observe(document.head, { childList: true });
+              }
+
               function initWerent() {
+                injectWerentThemeOverrides();
                 if (typeof generateWerentWidget === 'function') {
                   generateWerentWidget(95612044);
                 } else {
