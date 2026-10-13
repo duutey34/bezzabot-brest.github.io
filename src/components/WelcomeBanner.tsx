@@ -49,6 +49,16 @@ export const WelcomeBanner: React.FC<WelcomeBannerProps> = ({ onCopyWifi, wifiCo
 
         <a
           href="#taxi-home"
+          onClick={(e) => {
+            e.preventDefault();
+            const el = document.getElementById('taxi-home');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              try {
+                history.pushState(null, '', '#taxi-home');
+              } catch (_) {}
+            }
+          }}
           className="py-2.5 px-2 rounded-xl text-xs font-semibold flex flex-col items-center justify-center gap-1 bg-[#fffdfa] text-[#2c221b] hover:bg-[#f5ede3] border border-[#e2d9cd] transition-all active:scale-95 shadow-sm"
         >
           <span className="text-sm leading-none">🚕</span>

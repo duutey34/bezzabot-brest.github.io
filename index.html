@@ -588,7 +588,8 @@
       transition: all 0.3s ease;
     }
 
-    .home-taxi-box:target {
+    .home-taxi-box:target,
+    .home-taxi-box.highlight-focus {
       animation: targetPulse 1.6s ease;
     }
 
@@ -761,7 +762,7 @@
         <button class="welcome-btn welcome-btn-primary" onclick="copyWifi()">
           📶 Wi-Fi пароль
         </button>
-        <a href="#taxi-home" class="welcome-btn">
+        <a href="#taxi-home" class="welcome-btn" onclick="scrollToTaxiHome(event)">
           🚕 Такси домой
         </a>
         <a href="#contacts" class="welcome-btn">
@@ -1438,6 +1439,33 @@
         }
       });
     });
+
+    // Плавный скролл к блоку вызова такси строго по центру экрана
+    function scrollToTaxiHome(e) {
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
+      const target = document.getElementById('taxi-home');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        try {
+          history.pushState(null, '', '#taxi-home');
+        } catch (_) {}
+        target.classList.remove('highlight-focus');
+        void target.offsetWidth;
+        target.classList.add('highlight-focus');
+      }
+    }
+
+    document.querySelectorAll('a[href="#taxi-home"]').forEach(link => {
+      link.addEventListener('click', scrollToTaxiHome);
+    });
+
+    if (window.location.hash === '#taxi-home') {
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(scrollToTaxiHome, 300);
+      });
+    }
   </script>
 </body>
 </html>
